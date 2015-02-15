@@ -151,7 +151,7 @@ EXIT:
 VOID WINAPI ServiceCtrlHandler(DWORD CtrlCode)
 {
 	OutputDebugString(_T("ImageServer: ServiceCtrlHandler: Entry"));
-
+	
 	switch (CtrlCode)
 	{
 	case SERVICE_CONTROL_STOP:

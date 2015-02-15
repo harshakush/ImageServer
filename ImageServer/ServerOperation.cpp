@@ -1,8 +1,7 @@
 
 #include "ServerOperation.h"
 
-ServerOperation::ServerOperation()
-{
+ServerOperation::ServerOperation() {
 
 }
 void ServerOperation::handle_get(http_request message) {

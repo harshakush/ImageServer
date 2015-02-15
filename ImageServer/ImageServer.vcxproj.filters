@@ -30,6 +30,12 @@
     <ClInclude Include="ServerOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ServerParameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerDispatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
