@@ -8,6 +8,7 @@
 #include "pplx/pplxtasks.h"
 #include<map>
 #include<string>
+#include "ServerDispatcher.h"
 
 using namespace web;
 using namespace web::http;
@@ -24,17 +25,8 @@ public:
 	void handle_post(http_request message);
 	void handle_delete(http_request message);
 
-	void register_operation(const http::method &operation_type, std::function<void()> operation) {
-		m_registeredOperations.insert(make_pair(operation_type, operation));
-	}
-
-	function<void()> get_registered_operation(const http::method &operation_type) {
-		return m_registeredOperations.find(operation_type)->second;
-	}
-
 private:
-
-	std::map<const http::method, std::function<void()>> m_registeredOperations;
+	ServerDispatcher m_dispatcher;
 
 };
 

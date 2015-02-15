@@ -64,7 +64,7 @@ class ServerParameters : public ServerParametersInterfacce {
 			}
 
 			virtual void addParemeter(ServerParameterPtr parameter) { 
-				m_paramaterList.insert(parameter);
+				m_paramaterList.push_back(parameter);
 			}
 
 private: 
