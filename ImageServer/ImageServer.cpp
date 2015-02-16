@@ -10,7 +10,7 @@
 #include <map>
 #include <set>
 #include <string>
-#include "RESTServerListner.h"
+#include "RESTServer.h"
 
 using namespace std;
 
@@ -178,9 +178,9 @@ VOID WINAPI ServiceCtrlHandler(DWORD CtrlCode)
 
 		// This will signal the worker thread to start shutting down
 		//Before we exit do clean up here as well.	
-		server.stop();
-
+		
 		SetEvent(g_ServiceStopEvent);
+		server.stop();
 
 		break;
 
@@ -199,6 +199,7 @@ DWORD WINAPI ServiceWorkerThread(LPVOID lpParam)
 
 
 	server.start();
+
 	//  Periodically check if the service has been requested to stop
 	while (WaitForSingleObject(g_ServiceStopEvent, 0) != WAIT_OBJECT_0)	{		
 	
