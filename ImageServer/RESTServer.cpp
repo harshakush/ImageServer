@@ -39,7 +39,9 @@ RestServer::RestServer(const http::uri& url) : m_listener(http_listener(url)), m
 	//Have function pointer table and call them.
 	//Ideally static method. Or else
 	//A method parser which can be used.
+
 	//testing push manu
+
 	m_listener.support(methods::GET,
 		std::tr1::bind(&RestServer::handle_get,
 		this,
