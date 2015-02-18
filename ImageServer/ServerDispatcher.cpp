@@ -12,7 +12,7 @@ void ServerDispatcher::init() {
 }
 
 CallBackOpeation  ServerDispatcher::getCallBack(ServerDataTypes::rest_operation operationType, string method) {
-	RegisteredMultimap mapofmap = m_registeredOperations.find(operationType)->second;
+	CallBackMap mapofmap = m_registeredOperations.find(operationType)->second;
 	map<string, CallBackOpeation>::iterator it;
 	for (it = mapofmap.begin(); it != mapofmap.end(); it++) {
 		string str = it->first;

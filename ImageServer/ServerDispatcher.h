@@ -15,7 +15,7 @@ using namespace ServerDataTypes;
 
 
 typedef function<void()> CallBackOpeation;
-typedef map<string, CallBackOpeation> RegisteredMultimap;
+typedef map<string, CallBackOpeation> CallBackMap;
 
 class ServerDispatcher {
 
@@ -29,8 +29,8 @@ public:
 	void init();
 
 private:
-	 RegisteredMultimap m_registeredOperationsMap;
-	 std::map<ServerDataTypes::rest_operation, RegisteredMultimap> m_registeredOperations;
+	CallBackMap m_registeredOperationsMap;
+	std::map<ServerDataTypes::rest_operation, CallBackMap> m_registeredOperations;
 	
 	
 };
