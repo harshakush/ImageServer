@@ -1,9 +1,9 @@
 #include "RESTServer.h"
+#include "ServerResponse.h"
 
 void RestServer::handle_get(http_request message) {
 	std::string uri = ::utility::conversions::to_utf8string(message.request_uri().to_string());
-	m_dispatcher.dispatch(ServerDataTypes::rest_methods::IGET, uri);
-	message.reply(status_codes::OK, U("Hello, World---23!"));
+	message.reply(status_codes::OK, m_dispatcher.dispatch(ServerDataTypes::rest_methods::IGET, uri)->getResponse());
 }
 
 void RestServer::handle_put(http_request message) {
