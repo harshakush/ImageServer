@@ -7,13 +7,16 @@ void RestServer::handle_get(http_request message) {
 }
 
 void RestServer::handle_put(http_request message) {
-	message.reply(status_codes::OK, U("Hello, World---23!"));
+	message.reply(status_codes::OK,
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
 }
 void RestServer::handle_post(http_request message) {
-	message.reply(status_codes::OK, U("Hello, World---23!"));
+	message.reply(status_codes::OK,
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
 }
 void RestServer::handle_delete(http_request message) {
-	message.reply(status_codes::OK, U("Hello, World---23!"));
+	message.reply(status_codes::OK,
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
 }
 
 void RestServer::start() {
