@@ -28,7 +28,7 @@ public:
 	
 	CallBackOpeation  getCallBack(ServerDataTypes::rest_operation operationType, string method);
 
-	ServerResponsePtr  dispatch(ServerDataTypes::rest_operation operationType, string method);
+	ServerResponsePtr  dispatch(ServerRequestPtr request);
 	
 	void init();
 

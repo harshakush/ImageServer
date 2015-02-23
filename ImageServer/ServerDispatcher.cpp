@@ -25,9 +25,9 @@ CallBackOpeation  ServerDispatcher::getCallBack(ServerDataTypes::rest_operation 
 
 }
 
-ServerResponsePtr  ServerDispatcher::dispatch(ServerDataTypes::rest_operation operationType, string method) {
-	CallBackOpeation operation = getCallBack(operationType, method);
-	return operation(ServerRequestPtr(new ServerRequest()));
+ServerResponsePtr  ServerDispatcher::dispatch(ServerRequestPtr message) {
+	CallBackOpeation operation = getCallBack(message->getMethod(), message->getUri());
+	return operation(message);	
 }
 
 

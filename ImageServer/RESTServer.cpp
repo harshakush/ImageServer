@@ -3,7 +3,7 @@
 
 void RestServer::handle_get(http_request message) {
 	message.reply(status_codes::OK, 
-		m_dispatcher.dispatch(ServerDataTypes::rest_methods::IGET, ::utility::conversions::to_utf8string(message.request_uri().to_string()))->getResponse());
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
 }
 
 void RestServer::handle_put(http_request message) {

@@ -4,6 +4,9 @@
 
 #include <memory>
 #include <cpprest\asyncrt_utils.h>
+#include <cpprest\http_headers.h>
+#include <cpprest\http_msg.h>
+
 using namespace std;
 using namespace web::http;
 
