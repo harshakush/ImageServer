@@ -2,27 +2,14 @@
     CONSOLE APPLICATION : ImageServer Project Overview
 ========================================================================
 
-AppWizard has created this ImageServer application for you.
+ImageServer is simple C++ REST SDK based rest server which will support 
+upload and download of images. 
 
-This file contains a summary of what you will find in each of the files that
-make up your ImageServer application.
+We will also implement a simple framework using which we can easily define
+any resource rest apis.
 
-
-ImageServer.vcxproj
-    This is the main project file for VC++ projects generated using an Application Wizard.
-    It contains information about the version of Visual C++ that generated the file, and
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
-
-ImageServer.vcxproj.filters
-    This is the filters file for VC++ projects generated using an Application Wizard. 
-    It contains information about the association between the files in your project 
-    and the filters. This association is used in the IDE to show grouping of files with
-    similar extensions under a specific node (for e.g. ".cpp" files are associated with the
-    "Source Files" filter).
-
-ImageServer.cpp
-    This is the main application source file.
+We will be using C++11 for all the development and will be developed in windows
+environment.
 
 /////////////////////////////////////////////////////////////////////////////
 Other standard files:
