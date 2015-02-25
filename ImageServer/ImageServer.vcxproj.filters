@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="..\test\readme.txt.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -30,13 +31,22 @@
     <ClInclude Include="ServerDispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RESTServerListner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImagesResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RestInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="RESTServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ServerDataTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RestInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ServerRequest.h">
@@ -45,7 +55,10 @@
     <ClInclude Include="ServerResponse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ImagesResource.h">
+    <ClInclude Include="ServerUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ImageProcessing\image_operations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,17 +69,22 @@
     <ClCompile Include="ImageServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ServerUtils.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="RESTServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ServerDispatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\ImageProcessing\Image_operations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\ImageProcessing\IMG_0909.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
