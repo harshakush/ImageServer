@@ -43,21 +43,23 @@ RestServer::RestServer(const http::uri& url) : m_listener(http_listener(url)), m
 	//Ideally static method. Or else
 	//A method parser which can be used.
 
+	//testing push manu
+
 	m_listener.support(methods::GET,
 		std::tr1::bind(&RestServer::handle_get,
 		this,
 		std::tr1::placeholders::_1));
 
 	m_listener.support(methods::PUT,
-		std::tr1::bind(&RestServer::handle_get,
+		std::tr1::bind(&RestServer::handle_put,
 		this,
 		std::tr1::placeholders::_1));
 	m_listener.support(methods::POST,
-		std::tr1::bind(&RestServer::handle_get,
+		std::tr1::bind(&RestServer::handle_post,
 		this,
 		std::tr1::placeholders::_1));
 	m_listener.support(methods::DEL,
-		std::tr1::bind(&RestServer::handle_get,
+		std::tr1::bind(&RestServer::handle_del,
 		this,
 		std::tr1::placeholders::_1));
 }
