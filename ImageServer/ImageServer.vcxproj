@@ -83,8 +83,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ImageProcessing\image_operations.h" />
     <ClInclude Include="ImagesResource.h" />
+    <ClInclude Include="image_operations.h" />
     <ClInclude Include="RestInterface.h" />
     <ClInclude Include="RESTServer.h" />
     <ClInclude Include="ServerDataTypes.h" />
@@ -99,8 +99,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\ImageProcessing\Image_operations.cpp" />
     <ClCompile Include="ImageServer.cpp" />
+    <ClCompile Include="Image_operations.cpp" />
     <ClCompile Include="RESTServer.cpp" />
     <ClCompile Include="ServerDispatcher.cpp" />
     <ClCompile Include="stdafx.cpp" />

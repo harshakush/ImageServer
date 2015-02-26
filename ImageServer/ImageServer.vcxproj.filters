@@ -46,9 +46,6 @@
     <ClInclude Include="RESTServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ServerDataTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ServerRequest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -58,7 +55,10 @@
     <ClInclude Include="ServerUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ImageProcessing\image_operations.h">
+    <ClInclude Include="image_operations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerDataTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -75,7 +75,7 @@
     <ClCompile Include="ServerDispatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ImageProcessing\Image_operations.cpp">
+    <ClCompile Include="Image_operations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

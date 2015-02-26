@@ -4,8 +4,10 @@
 #include <cpprest\asyncrt_utils.h>
 #include <cpprest\http_headers.h>
 #include <cpprest\http_msg.h>
+#include "ServerDataTypes.h"
 using namespace std;
 using namespace web::http;
+
 class ServerRequest {
 public: ServerRequest(http_request message) : m_requestMessage(message) {
 			

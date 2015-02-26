@@ -1,5 +1,4 @@
 #include "ServerDispatcher.h"
-#include "ServerDataTypes.h"
 
 ServerDispatcher::ServerDispatcher() :m_imageResource(new ImagesResource()){
 	init();
