@@ -5,12 +5,14 @@
 #include "RestInterface.h"
 using namespace std;
 
+//resource images:
 class ImagesResource : public RestInterface {
 
 public:
 	ImagesResource() {
 
 	}
+
 	virtual ServerResponsePtr get(const ServerRequestPtr request){
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
 		response->setResponse("simple response");
