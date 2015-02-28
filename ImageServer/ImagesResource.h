@@ -24,6 +24,7 @@ public:
 	}
 	virtual ServerResponsePtr post(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
+		request->downloadFile();
 		response->setResponse("simple response");
 		return response;
 	}

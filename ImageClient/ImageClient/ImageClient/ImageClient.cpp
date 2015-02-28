@@ -1,6 +1,9 @@
 // ImageClient.cpp : Defines the entry point for the console application.
 //
 
+//Read the below link.
+//We need to implememt it by ourself.
+//http://casablanca.codeplex.com/discussions/452833
 #include "stdafx.h"
 #include <iostream>
 #include<cpprest\http_headers.h>

@@ -33,7 +33,7 @@ public:
 	void init();
 
 private:
-	CallBackMap m_registeredOperationsMap;
+	//CallBackMap m_registeredOperationsMap;
 	std::map<ServerDataTypes::rest_operation, CallBackMap> m_registeredOperations;
 	ImagesResource *m_imageResource;
 	
