@@ -6,7 +6,11 @@
 #include "image_operations.h"
 using namespace std;
 
+//Todo : Maintain the same function pointer map
+//and automate the dispatch
+
 //resource images:
+typedef function<ServerResponsePtr(ServerRequestPtr parameter)> CallBackOpeation;
 class ImagesResource : public RestInterface {
 
 private:
@@ -15,17 +19,19 @@ private:
 public:
 	ImagesResource() {
 
+		/* m_registeredResources.insert(make_pair(ServerDataTypes::rest_methods::IGET, std::tr1::bind(&ImagesResource::get,
+			this,
+			std::tr1::placeholders::_1))); */
 	}
 
 	virtual ServerResponsePtr get(const ServerRequestPtr request){
-
 		return m_ImgOperations.resizeImage(request);
-
 	}
+
 	virtual ServerResponsePtr post(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
 		request->downloadFile();
-		response->setResponse("simple response");
+		response->setResponse("file uploaded successfully");
 		return response;
 	}
 	virtual ServerResponsePtr put(const ServerRequestPtr request) {
@@ -38,6 +44,22 @@ public:
 		response->setResponse("simple response");
 		return response;
 	}
+
+	virtual ServerResponsePtr dispatch(const ServerRequestPtr request) {
+		//CallBackOpeation operation = m_registeredResources.find(request->getMethod());
+		//return operation(request);
+
+		if (request->getMethod() == ServerDataTypes::rest_methods::IGET) {
+			return get(request);
+		}
+
+		else if (request->getMethod() == ServerDataTypes::rest_methods::IPOST) {
+			return post(request);
+		}
+	}
+private:
+	//std::map<ServerDataTypes::rest_methods, CallBackOpeation> m_registeredResources;
+
 };
 
 #endif

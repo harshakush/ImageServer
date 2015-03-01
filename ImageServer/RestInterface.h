@@ -19,6 +19,7 @@ public:
 	virtual ServerResponsePtr post(const ServerRequestPtr request) = 0;
 	virtual ServerResponsePtr put(const ServerRequestPtr request) = 0;
 	virtual ServerResponsePtr del(const ServerRequestPtr request) = 0;
+	virtual ServerResponsePtr dispatch(const ServerRequestPtr request) = 0;
 };
 
 typedef shared_ptr<RestInterface> RestInterfacePtr;

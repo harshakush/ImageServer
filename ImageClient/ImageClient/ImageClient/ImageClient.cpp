@@ -27,50 +27,74 @@ using namespace web::http::client;          // HTTP client features
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	string fileName = "Harsha.txt";
-	string filePath = "C:\\Harsha.txt";
 
-	// Open file stream
-	concurrency::streams::basic_istream<unsigned char> fileStream = file_stream<unsigned char>::open_istream(to_string_t(filePath)).get();
+	while (1) {
 
-	// Read file stream to string
-	concurrency::streams::stringstreambuf streamBuffer;
-	fileStream.read_to_end(streamBuffer).get();
-	string textFile = move(streamBuffer.collection());
-	fileStream.close();
-	streamBuffer.close();
+		string fileName = "Harsha.jpg";
+		string filePath = "C:\\Harsha.jpg";
+		
+		string_t fileName_t;//to_string_t(const std::string &s)
 
-	// Make body text
-	string textBoundary = "--0123456789";
-	string textBody = "";
+		cout << "Enter the file to be uploaded to server\n";
+		cin >> filePath;
+		fileName_t = to_string_t(filePath);
+		
 
-	// Note: form data and content type depend on your application
-	textBody += "--" + textBoundary + "\r\n";
-	textBody += "Content-Disposition: form-data; name=\"file[]\"; filename=\"" + fileName + "\"\r\n";
-	textBody += "Content-Type: application/octet-stream\r\n\r\n";
-	textBody += textFile + "\r\n";
+		// Open file stream
+		concurrency::streams::basic_istream<unsigned char> fileStream = file_stream<unsigned char>::open_istream(to_string_t(filePath)).get();
 
-	// Last boundary
-	textBody += "--" + textBoundary + "--\r\n";
+		// Read file stream to string
+		concurrency::streams::stringstreambuf streamBuffer;
+		fileStream.read_to_end(streamBuffer).get();
+		string textFile = move(streamBuffer.collection());
+		fileStream.close();
+		streamBuffer.close();
 
-	// Put text to the buffer
-	concurrency::streams::producer_consumer_buffer<unsigned char> buffer;
-	buffer.putn((const unsigned char *)textBody.c_str(), textBody.length());
-	buffer.close(std::ios_base::out);
+		// Make body text
+		string textBoundary = "--0123456789";
+		string textBody = "";
 
-	// Set website
-	string_t website = L"http://localhost:2323/restdemo";
-	http_client client(website);
+		textBody += textFile;
 
-	// Create HTTP request
-	http_request msg;
-	msg.set_body(concurrency::streams::istream(buffer));
-	msg.set_method(methods::POST);
-	msg.headers().set_content_type(to_string_t("multipart/form-data; boundary=" + textBoundary));
-	msg.headers().set_content_length(textBody.length());
+		// Put text to the buffer
+		concurrency::streams::producer_consumer_buffer<unsigned char> buffer;
+		buffer.putn((const unsigned char *)textBody.c_str(), textBody.length());
+		buffer.close(std::ios_base::out);
 
-	// Send HTTP request
-	http_response response = client.request(msg).get();
+		// Set website
+		string_t website = L"http://localhost:2323/rest/images";
+		http_client client(website);
+
+		// Create HTTP request
+		http_request msg;
+		msg.set_body(concurrency::streams::istream(buffer));
+		msg.set_method(methods::POST);
+		msg.headers().set_content_type(to_string_t("multipart/form-data; boundary=" + textBoundary));
+		msg.headers().set_content_length(textBody.length());
+		msg.headers().add(L"FileName", fileName_t);
+		//msg.headers().add(L"FileSize", textBody.length());
+
+		// Send HTTP request
+		try {
+			http_response response = client.request(msg).get();
+		}
+		catch (exception e)
+		{
+			string erro_msg = e.what();
+		}
+		cout << "File uploaded successfully \n ";
+		cout << "Do you want to continue ? \n";
+
+		char yes;
+		cin >> yes;
+
+		if (yes == 'y' || yes == 'Y') {
+			continue;
+		}
+		else {
+			break;
+		}
+	}
 	return 0;
 }
 

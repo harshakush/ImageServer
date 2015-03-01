@@ -16,26 +16,20 @@ using namespace web::http;
 using namespace ServerDataTypes;
 
 
-
-//typedef function<void()> CallBackOpeation;
-typedef function<ServerResponsePtr(ServerRequestPtr parameter)> CallBackOpeation;
-typedef map<string, CallBackOpeation> CallBackMap;
-
 class ServerDispatcher {
 
 public:
 	ServerDispatcher();
 	
-	CallBackOpeation  getCallBack(ServerDataTypes::rest_operation operationType, string method);
+	RestInterfacePtr  getRESTResource(ServerDataTypes::rest_operation operationType, string method);
 
 	ServerResponsePtr  dispatch(ServerRequestPtr request);
 	
 	void init();
 
 private:
-	//CallBackMap m_registeredOperationsMap;
-	std::map<ServerDataTypes::rest_operation, CallBackMap> m_registeredOperations;
-	ImagesResource *m_imageResource;
+
+	std::map<std::string, RestInterfacePtr> m_registeredResources;
 	
 };
 
