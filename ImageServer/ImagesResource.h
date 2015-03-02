@@ -4,6 +4,7 @@
 
 #include "RestInterface.h"
 #include "image_operations.h"
+#include "StorageUtils.h"
 using namespace std;
 
 //Todo : Maintain the same function pointer map
@@ -30,7 +31,7 @@ public:
 
 	virtual ServerResponsePtr post(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		request->downloadFile();
+		StorageUtils::saveFile(request);
 		response->setResponse("file uploaded successfully");
 		return response;
 	}

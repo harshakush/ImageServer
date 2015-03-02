@@ -49,31 +49,8 @@ public:
 
 	void extractString() {
 
-
 	}
-	void downloadFile() {
-		web::http::http_headers::const_iterator fileName = m_requestMessage.headers().find(L"FileName");
-		char path[_MAX_PATH];
-		char drive[_MAX_DRIVE];
-		char dir[_MAX_DIR];
-		char name[_MAX_FNAME];
-		char ext[_MAX_EXT];
-		_bstr_t b(fileName->second.c_str());
-		const char* c = b;
-
 	
-		_splitpath(c, drive, path, name, ext);
-
-		string str(name);
-		string fullPath = "C:\\Personal\\" + str + ext;
-		string_t fileToBeStored = utility::conversions::to_string_t(fullPath);
-		auto stream = concurrency::streams::fstream::open_ostream(
-			fileToBeStored,
-			std::ios_base::out | std::ios_base::binary).get();
-		m_requestMessage.body().read_to_end(stream.streambuf()).wait(); // never returns
-		stream.close().get();
-	}
-
 private:
 	
 	void init() {

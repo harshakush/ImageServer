@@ -87,6 +87,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileSystemsStorage.h" />
     <ClInclude Include="ImagesResource.h" />
     <ClInclude Include="image_operations.h" />
     <ClInclude Include="RestInterface.h" />
@@ -100,6 +101,9 @@
     <ClInclude Include="ServerResponse.h" />
     <ClInclude Include="ServerUtils.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StorageFactory.h" />
+    <ClInclude Include="StorageInterface.h" />
+    <ClInclude Include="StorageUtils.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +112,7 @@
     <ClCompile Include="RESTServer.cpp" />
     <ClCompile Include="ServerDispatcher.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="StorageUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
