@@ -62,7 +62,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		buffer.close(std::ios_base::out);
 
 		// Set website
-		string_t website = L"http://localhost:2323/rest/images";
+		string_t website = L"http://localhost:6060/rest/images";
 		http_client client(website);
 
 		// Create HTTP request

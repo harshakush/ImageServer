@@ -27,7 +27,7 @@ VOID WINAPI ServiceCtrlHandler(DWORD);
 DWORD WINAPI ServiceWorkerThread(LPVOID lpParam);
 
 
-RestServer server (L"http://localhost:2323/rest");
+RestServer server (L"http://localhost:6060/rest");
 
 
 int _tmain(int argc, TCHAR *argv[])

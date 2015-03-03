@@ -13,6 +13,7 @@
 
 using namespace std;
 
+
 class RestInterface {
 public:
 	virtual ServerResponsePtr get(const ServerRequestPtr request) = 0; 
@@ -20,7 +21,9 @@ public:
 	virtual ServerResponsePtr put(const ServerRequestPtr request) = 0;
 	virtual ServerResponsePtr del(const ServerRequestPtr request) = 0;
 	virtual ServerResponsePtr dispatch(const ServerRequestPtr request) = 0;
-};
+private:
 
+};
 typedef shared_ptr<RestInterface> RestInterfacePtr;
+
 #endif

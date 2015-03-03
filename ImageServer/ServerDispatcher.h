@@ -8,6 +8,7 @@
 #include "ServerRequest.h"
 #include "ServerResponse.h"
 #include "ImagesResource.h"
+#include "ResourceTable.hpp"
 #include <cpprest\http_msg.h>
 #include<memory>
 
@@ -30,6 +31,7 @@ public:
 private:
 
 	std::map<std::string, RestInterfacePtr> m_registeredResources;
+	ResourceTable resourceTable;
 	
 };
 
