@@ -87,9 +87,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuildProperties.h" />
     <ClInclude Include="FileSystemsStorage.h" />
+    <ClInclude Include="ResourceTable.hpp" />
     <ClInclude Include="ImagesResource.h" />
-    <ClInclude Include="image_operations.h" />
     <ClInclude Include="RestInterface.h" />
     <ClInclude Include="RESTServer.h" />
     <ClInclude Include="ServerDataTypes.h" />
@@ -108,7 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImageServer.cpp" />
-    <ClCompile Include="Image_operations.cpp" />
     <ClCompile Include="RESTServer.cpp" />
     <ClCompile Include="ServerDispatcher.cpp" />
     <ClCompile Include="stdafx.cpp" />

@@ -55,9 +55,6 @@
     <ClInclude Include="ServerUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="image_operations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ServerDataTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -73,6 +70,12 @@
     <ClInclude Include="FileSystemsStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceTable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -85,9 +88,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ServerDispatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Image_operations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StorageUtils.cpp">

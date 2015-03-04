@@ -20,19 +20,15 @@ using namespace ServerDataTypes;
 class ServerDispatcher {
 
 public:
-	ServerDispatcher();
-	
+	ServerDispatcher() {
+
+	}
 	RestInterfacePtr  getRESTResource(ServerDataTypes::rest_operation operationType, string method);
 
 	ServerResponsePtr  dispatch(ServerRequestPtr request);
 	
-	void init();
-
 private:
-
-	std::map<std::string, RestInterfacePtr> m_registeredResources;
-	ResourceTable resourceTable;
-	
+	ResourceTable m_resourceTable;	
 };
 
 typedef shared_ptr<ServerDispatcher> ServerDispatcherPtr;
