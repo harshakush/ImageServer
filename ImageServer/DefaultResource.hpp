@@ -1,15 +1,15 @@
-
-#ifndef IMAGES_RESOURCE_HEADER
-#define IMAGES_RESOURCE_HEADER
+#ifndef DEFAULT_RESOURCE_HEADER
+#define DEFAULT_RESOURCE_HEADER
 
 #include "RestInterface.h"
-#include "StorageUtils.h"
+#include <memory>
+
 using namespace std;
+static const string RESOURCE_NOT_FOUND = "Resource not found";
 
-
-class ImagesResource : public RestInterface {
+class DefaultResource : public RestInterface {
 public:
-	ImagesResource() {
+	DefaultResource() {
 	}
 
 	virtual ServerResponsePtr get(const ServerRequestPtr request){
@@ -18,18 +18,17 @@ public:
 
 	virtual ServerResponsePtr post(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		StorageUtils::saveFile(request);
-		response->setResponse("file uploaded successfully");
+		response->setResponse(RESOURCE_NOT_FOUND);
 		return response;
 	}
 	virtual ServerResponsePtr put(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		response->setResponse("simple response");
+		response->setResponse(RESOURCE_NOT_FOUND);
 		return response;
 	}
 	virtual ServerResponsePtr del(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		response->setResponse("simple response");
+		response->setResponse(RESOURCE_NOT_FOUND);
 		return response;
 	}
 
@@ -43,4 +42,5 @@ public:
 	}
 };
 
+typedef shared_ptr<DefaultResource> DefaultResourcePtr;
 #endif

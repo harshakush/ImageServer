@@ -25,6 +25,7 @@ void RestServer::start() {
 			.open()
 			.wait();
 
+		Sleep(10000);
 	}
 	catch (exception const &e){
 		wcout << e.what() << endl;
