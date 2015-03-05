@@ -5,7 +5,7 @@
 #include <memory>
 
 using namespace std;
-static const string RESOURCE_NOT_FOUND = "Resource not found";
+static const utf16string RESOURCE_NOT_FOUND = L"Resource not found";
 
 class DefaultResource : public RestInterface {
 public:

@@ -2,21 +2,30 @@
 #include "ServerResponse.h"
 
 void RestServer::handle_get(http_request message) {
-	message.reply(status_codes::OK, 
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
+	
+	
+	
+	ServerResponsePtr responsePtr = m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)));
+	
+
+	//message.reply(status_codes::OK, 
+	//	"Finished processing request");
+	//message.reply(status_codes::OK, responsePtr->getResponse().as_string(), L"application/json");
+	message.reply(status_codes::OK, responsePtr->getResponse());
+
 }
 
 void RestServer::handle_put(http_request message) {
 	message.reply(status_codes::OK,
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse().as_string(), L"application/json");
 }
 void RestServer::handle_post(http_request message) {
 	message.reply(status_codes::OK,
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse().as_string(), L"application/json");
 }
 void RestServer::handle_delete(http_request message) {
 	message.reply(status_codes::OK,
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse().as_string(), L"application/json");
 }
 
 void RestServer::start() {

@@ -86,17 +86,63 @@ pplx::task<void> createAndSendRequest() {
 		status_code responseStatus = response.status_code();
 		cout << responseBody << "Response Code"<<responseStatus<<endl;
 	});
-
 	
 }
 
+// Retrieves a JSON value from an HTTP request.
+pplx::task<void> RequestJSONValueAsync()
+{
+	// TODO: To successfully use this example, you must perform the request  
+	// against a server that provides JSON data.  
+	// This example fails because the returned Content-Type is text/html and not application/json.
+	http_client client(L"http://localhost:6060/rest/images");
+	return client.request(methods::GET).then([](http_response response) -> pplx::task<json::value>
+	{
+		if (response.status_code() == status_codes::OK)
+		{
+			return response.extract_json();
+		}
+
+		// Handle error cases, for now return empty json value... 
+		return pplx::task_from_result(json::value());
+	})
+		.then([](pplx::task<json::value> previousTask)
+	{
+		try
+		{
+			const json::value& v = previousTask.get();			
+			// Perform actions here to process the JSON value...
+		}
+		catch (const http_exception& e)
+		{
+			// Print error.
+			wostringstream ss;
+			ss << e.what() << endl;
+			wcout << ss.str();
+		}
+	});
+
+	/* Output:
+	Content-Type must be application/json to extract (is: text/html)
+	*/
+}
 int _tmain(int argc, _TCHAR* argv[])
 {
 
 	while (1) {
-		createAndSendRequest().wait();
+		int input;
+		cout << "Please enter 1 for get and 2 for post";
+		cin >> input;
 
-		cout << "File uploaded successfully \n ";
+		switch (input) {
+
+		case 1: 
+			RequestJSONValueAsync().wait();
+			break;
+		case 2: createAndSendRequest().wait();
+			break;
+		}
+		
 		cout << "Do you want to continue ? \n";
 
 		char yes;

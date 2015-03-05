@@ -19,17 +19,17 @@ public:
 	virtual ServerResponsePtr post(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
 		StorageUtils::saveFile(request);
-		response->setResponse("file uploaded successfully");
+		response->setResponse(L"file uploaded successfully");
 		return response;
 	}
 	virtual ServerResponsePtr put(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		response->setResponse("simple response");
+		response->setResponse(L"simple response");
 		return response;
 	}
 	virtual ServerResponsePtr del(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		response->setResponse("simple response");
+		response->setResponse(L"simple response");
 		return response;
 	}
 
