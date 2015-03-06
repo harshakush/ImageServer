@@ -2,30 +2,21 @@
 #include "ServerResponse.h"
 
 void RestServer::handle_get(http_request message) {
-	
-	
-	
-	ServerResponsePtr responsePtr = m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)));
-	
-
-	//message.reply(status_codes::OK, 
-	//	"Finished processing request");
-	//message.reply(status_codes::OK, responsePtr->getResponse().as_string(), L"application/json");
+	ServerResponsePtr responsePtr = m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)));	
 	message.reply(status_codes::OK, responsePtr->getResponse());
-
 }
 
 void RestServer::handle_put(http_request message) {
 	message.reply(status_codes::OK,
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse().as_string(), L"application/json");
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
 }
 void RestServer::handle_post(http_request message) {
 	message.reply(status_codes::OK,
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse().as_string(), L"application/json");
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
 }
 void RestServer::handle_delete(http_request message) {
 	message.reply(status_codes::OK,
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse().as_string(), L"application/json");
+		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
 }
 
 void RestServer::start() {
