@@ -23,6 +23,60 @@ using namespace web;                        // Common features like URIs.
 using namespace web::http;                  // Common HTTP functionality
 using namespace web::http::client;          // HTTP client features
 
+
+void DisplayJSONValue(json::value doc)
+{
+	for (auto& game : doc.at(U("fileList")).as_array())
+	{
+		for (auto& p : game.as_object())
+		{
+			string_t name = p.first;
+			string_t value = p.second.as_string();
+			wcout << name << L":" << value << endl;
+				
+		}
+	}
+}
+
+
+// Retrieves a JSON value from an HTTP request.
+pplx::task<void> RequestJSONValueAsync()
+{
+	// TODO: To successfully use this example, you must perform the request  
+	// against a server that provides JSON data.  
+	// This example fails because the returned Content-Type is text/html and not application/json.
+	http_client client(L"http://localhost:6060/rest/images");
+	return client.request(methods::GET).then([](http_response response) -> pplx::task<json::value>
+	{
+		if (response.status_code() == status_codes::OK)
+		{
+			return response.extract_json();
+		}
+
+		// Handle error cases, for now return empty json value... 
+		return pplx::task_from_result(json::value());
+	})
+		.then([](pplx::task<json::value> previousTask)
+	{
+		try
+		{
+			const json::value& v = previousTask.get();			
+			DisplayJSONValue(v);
+		}
+		catch (const http_exception& e)
+		{
+			// Print error.
+			wostringstream ss;
+			ss << e.what() << endl;
+			wcout << ss.str();
+		}
+	});
+
+	/* Output:
+	Content-Type must be application/json to extract (is: text/html)
+	*/
+}
+
 pplx::task<void> createAndSendRequest() {
 	string fileName = "Harsha.jpg";
 	string filePath = "C:\\Harsha.jpg";
@@ -84,48 +138,11 @@ pplx::task<void> createAndSendRequest() {
 		wstring responseBodyU = response.extract_string().get();
 		string responseBody = utility::conversions::to_utf8string(responseBodyU);
 		status_code responseStatus = response.status_code();
-		cout << responseBody << "Response Code"<<responseStatus<<endl;
-	});
-	
-}
-
-// Retrieves a JSON value from an HTTP request.
-pplx::task<void> RequestJSONValueAsync()
-{
-	// TODO: To successfully use this example, you must perform the request  
-	// against a server that provides JSON data.  
-	// This example fails because the returned Content-Type is text/html and not application/json.
-	http_client client(L"http://localhost:6060/rest/images");
-	return client.request(methods::GET).then([](http_response response) -> pplx::task<json::value>
-	{
-		if (response.status_code() == status_codes::OK)
-		{
-			return response.extract_json();
-		}
-
-		// Handle error cases, for now return empty json value... 
-		return pplx::task_from_result(json::value());
-	})
-		.then([](pplx::task<json::value> previousTask)
-	{
-		try
-		{
-			const json::value& v = previousTask.get();			
-			// Perform actions here to process the JSON value...
-		}
-		catch (const http_exception& e)
-		{
-			// Print error.
-			wostringstream ss;
-			ss << e.what() << endl;
-			wcout << ss.str();
-		}
+		cout << responseBody << "Response Code" << responseStatus << endl;
 	});
 
-	/* Output:
-	Content-Type must be application/json to extract (is: text/html)
-	*/
 }
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 

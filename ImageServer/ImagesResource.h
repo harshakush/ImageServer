@@ -4,6 +4,8 @@
 
 #include "RestInterface.h"
 #include "StorageUtils.h"
+#include "ImageProcessor.h"
+
 using namespace std;
 
 
@@ -13,7 +15,22 @@ public:
 	}
 
 	virtual ServerResponsePtr get(const ServerRequestPtr request){
-		return ServerResponsePtr(new ServerResponse());
+		ServerResponsePtr respone = ServerResponsePtr(new ServerResponse());
+		ImageProcessor imgProcessor;
+		vector<wstring> imageList= imgProcessor.get_all_imagenames_from_dir(L"C:\\Personal");
+		json::value json; 
+	
+		std::vector<web::json::value> fileList;
+		for (int i = 0; i < imageList.size(); i++)
+		{
+			web::json::value file;		
+			file[L"name"] = json::value::string(imageList[i]);
+			fileList.push_back(file);
+		}
+
+		json[L"fileList"] = json::value::array(fileList);
+		respone->setResponse(json);
+		return respone;
 	}
 
 	virtual ServerResponsePtr post(const ServerRequestPtr request) {

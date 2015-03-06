@@ -56,6 +56,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation>true</BrowseInformation>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -89,6 +90,7 @@
   <ItemGroup>
     <ClInclude Include="BuildProperties.h" />
     <ClInclude Include="FileSystemsStorage.h" />
+    <ClInclude Include="ImageProcessor.h" />
     <ClInclude Include="ResourceTable.hpp" />
     <ClInclude Include="ImagesResource.h" />
     <ClInclude Include="RestInterface.h" />
@@ -108,6 +110,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ImageProcessor.cpp" />
     <ClCompile Include="ImageServer.cpp" />
     <ClCompile Include="RESTServer.cpp" />
     <ClCompile Include="ServerDispatcher.cpp" />
@@ -119,6 +122,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\ImageProcessing\IMG_0909.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImageProcessing\ImageProcessorService\ImageProcessorService.vcxproj">
+      <Project>{2fa96546-b8b6-4bd6-b21a-4ff753ab698b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

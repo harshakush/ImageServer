@@ -30,6 +30,7 @@ public:
 		return m_json;
 	}
 
+
 	/* sample code.
 	*/
 	void buildJson() {
