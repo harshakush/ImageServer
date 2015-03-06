@@ -16,20 +16,7 @@ public:
 
 	virtual ServerResponsePtr get(const ServerRequestPtr request){
 		ServerResponsePtr respone = ServerResponsePtr(new ServerResponse());
-		ImageProcessor imgProcessor;
-		vector<wstring> imageList= imgProcessor.get_all_imagenames_from_dir(L"C:\\Personal");
-		json::value json; 
-	
-		std::vector<web::json::value> fileList;
-		for (int i = 0; i < imageList.size(); i++)
-		{
-			web::json::value file;		
-			file[L"name"] = json::value::string(imageList[i]);
-			fileList.push_back(file);
-		}
-
-		json[L"fileList"] = json::value::array(fileList);
-		respone->setResponse(json);
+		respone->setResponse(StorageUtils::getAllFiles(request));
 		return respone;
 	}
 
@@ -41,6 +28,7 @@ public:
 	}
 	virtual ServerResponsePtr put(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
+		StorageUtils::saveFile(request);
 		response->setResponse(L"simple response");
 		return response;
 	}
