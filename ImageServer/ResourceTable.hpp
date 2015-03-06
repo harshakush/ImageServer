@@ -29,6 +29,7 @@ public:
 
 
 	RestInterfacePtr getResource(string endpoint) {
+		string hosttt = m_properties.getHost();
 		ResourceTableTypeIter resourceItertator;
 		for (resourceItertator = m_resourceTable.begin(); resourceItertator != m_resourceTable.end(); resourceItertator++) {
 				string resourceName = resourceItertator->first;
