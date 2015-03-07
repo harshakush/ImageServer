@@ -4,9 +4,14 @@
 void RestServer::handle_get(http_request message) {
 	ServerRequestPtr request = ServerRequestPtr(new ServerRequest(message));	
 	ServerResponsePtr responsePtr = m_dispatcher.dispatch(request);
-
+	string_t fileName = request->getFileName();
 	if (responsePtr->getBufferStream() != NULL) {
-		message.headers().add(L"FileName", request->getFileName());
+
+		/*message.get_response().then([fileName](http_response response) {
+			response.headers().add(L"FileName", fileName);
+		}
+		); */
+		//.add(L"FileName", request->getFileName());
 		message.reply(status_codes::OK, responsePtr->getBufferStream(), responsePtr->getContenType());
 	}
 	else {

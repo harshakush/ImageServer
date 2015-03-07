@@ -77,7 +77,67 @@ pplx::task<void> RequestJSONValueAsync()
 	*/
 }
 
-pplx::task<void> createAndSendRequest() {
+pplx::task<void> downloadFile()
+{
+
+		// TODO: To successfully use this example, you must perform the request  
+	// against a server that provides JSON data.  
+	// This example fails because the returned Content-Type is text/html and not application/json.
+
+	string fileName;
+	cout << "Enter the file to be downloaded" << endl;
+	cin >> fileName;
+
+	string uri = "http://localhost:6060/rest/images?fileName=";
+	uri += fileName;
+	string_t uri_t = utility::conversions::to_string_t(uri);
+	http_client client(uri_t);
+
+	return client.request(methods::GET).then([fileName](http_response response)
+	{
+		if (response.status_code() == status_codes::OK)
+		{
+			//web::http::http_headers::const_iterator fileNameIter = response.headers().find(L"FileName");
+			string dirPath = "C:\\downloaded\\" + fileName;
+			string_t fileToBeStored = utility::conversions::to_string_t(dirPath);
+			try {
+				auto stream = concurrency::streams::fstream::open_ostream(
+					fileToBeStored,
+					std::ios_base::out | std::ios_base::binary).get();
+				response.body().read_to_end(stream.streambuf()).wait();
+				stream.close().get();
+			}
+			catch (exception &e) {
+				wcout << L"Error downloading file" << endl;
+				wcout << e.what();
+			}
+			}
+
+		return pplx::task_from_result(json::value());	
+	}).then([](pplx::task<json::value> previousTask)
+	{
+		try
+		{
+			const json::value& v = previousTask.get();
+			DisplayJSONValue(v);
+		}
+		catch (const http_exception& e)
+		{
+			// Print error.
+			wostringstream ss;
+			ss << e.what() << endl;
+			wcout << ss.str();
+		}
+	});
+
+	/* Output:
+	Content-Type must be application/json to extract (is: text/html)
+	*/
+}
+
+
+
+pplx::task<void> uploadFile() {
 	string fileName = "Harsha.jpg";
 	string filePath = "C:\\Harsha.jpg";
 
@@ -148,7 +208,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	while (1) {
 		int input;
-		cout << "Please enter 1 for get and 2 for post";
+		cout << "Please enter 1 for get and 2 for post 3 for download";
 		cin >> input;
 
 		switch (input) {
@@ -156,7 +216,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		case 1: 
 			RequestJSONValueAsync().wait();
 			break;
-		case 2: createAndSendRequest().wait();
+		case 2: uploadFile().wait();
+			break;
+		case 3:
+			downloadFile();
 			break;
 		}
 		
