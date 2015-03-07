@@ -15,9 +15,13 @@ public:
 	}
 
 	virtual ServerResponsePtr get(const ServerRequestPtr request){
-		ServerResponsePtr respone = ServerResponsePtr(new ServerResponse());
-		respone->setResponse(StorageUtils::getAllFiles(request));
-		return respone;
+		if (request->getFileName().empty()) {
+			ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
+			response->setResponse(StorageUtils::getAllFiles(request));
+			return response;
+		}
+		return StorageUtils::extractFile(request);
+		
 	}
 
 	virtual ServerResponsePtr post(const ServerRequestPtr request) {

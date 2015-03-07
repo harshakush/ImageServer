@@ -2,8 +2,17 @@
 #include "ServerResponse.h"
 
 void RestServer::handle_get(http_request message) {
-	ServerResponsePtr responsePtr = m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)));	
-	message.reply(status_codes::OK, responsePtr->getResponse());
+	ServerRequestPtr request = ServerRequestPtr(new ServerRequest(message));	
+	ServerResponsePtr responsePtr = m_dispatcher.dispatch(request);
+
+	if (responsePtr->getBufferStream() != NULL) {
+		message.headers().add(L"FileName", request->getFileName());
+		message.reply(status_codes::OK, responsePtr->getBufferStream(), responsePtr->getContenType());
+	}
+	else {
+		
+		message.reply(status_codes::OK, responsePtr->getResponse());
+	}
 }
 
 void RestServer::handle_put(http_request message) {

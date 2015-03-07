@@ -12,6 +12,7 @@
 #include<cpprest\producerconsumerstream.h>
 
 #include "ServerDataTypes.h"
+#include "ServerUtils.h"
 
 using namespace std;
 using namespace web::http;
@@ -50,6 +51,11 @@ public:
 	void extractString() {
 
 	}
+
+	string_t getFileName() {
+		return m_fileName;
+	}
+
 	
 private:
 	
@@ -66,29 +72,23 @@ private:
 		})
 			.wait();
 		//this wait here makes it synchronous
-		m_jsonRequest = answer;
+		m_jsonRequest = answer;	
+		m_relative_uri = m_requestMessage.relative_uri();
+		m_absolute_uri = m_requestMessage.absolute_uri();
+		m_request_uri = m_requestMessage.request_uri();
 
-		web::uri relative_uri_p = m_requestMessage.relative_uri();
-		web::uri absolute_uri_p = m_requestMessage.absolute_uri();
-		web::uri request_uri_p = m_requestMessage.request_uri();
-		string_t queryParameters = relative_uri_p.query();
-
-		string_t code;
-		if (queryParameters.find(L"="))		{
-			
-			string_t name = queryParameters.substr(0, queryParameters.find(L"="));
-			m_fileName = queryParameters.substr(queryParameters.find(L"=") + 1, queryParameters.size() - 1);
-		}	
-				
+		m_fileName = ServerUtils::getQueryParameter(m_requestMessage);					
 	}
 
-	string_t getFileName() {
-		return m_fileName;
-	}
-
+	
+private:
 	const http_request m_requestMessage;
 	web::json::value m_jsonRequest;
 	string_t m_fileName;
+	web::uri m_relative_uri;
+	web::uri m_absolute_uri;
+	web::uri m_request_uri;	
+
 	
 };
 

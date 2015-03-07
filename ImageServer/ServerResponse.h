@@ -19,10 +19,20 @@ public:
 	void setResponse(utf16string response) {
 		m_response = response;		
 	}
+
 	void setContentType(string_t contentType){
-		m_contentType= L"application/json";
+		if (contentType.empty()) {
+			m_contentType = L"application/json";
+		}
+		else {
+			m_contentType = contentType;
+		}
+
 	}
 
+	string_t getContenType() {
+		return m_contentType;
+	}
 	void setResponse(json::value json) {
 			m_json = json;
 	}
@@ -40,10 +50,18 @@ public:
 		m_json[L"key4"] = json::value::string(U("str"));
 	}
 
+	void setBufferStream(concurrency::streams::producer_consumer_buffer<unsigned char> buffer){
+		m_buffer = buffer;
+	}
+
+	concurrency::streams::producer_consumer_buffer<unsigned char> getBufferStream() {
+		return m_buffer;
+	}
 private :
 	utf16string m_response;
 	json::value m_json;
 	string_t m_contentType;
+	concurrency::streams::producer_consumer_buffer<unsigned char> m_buffer;
 };
 typedef shared_ptr<ServerResponse> ServerResponsePtr;
 
