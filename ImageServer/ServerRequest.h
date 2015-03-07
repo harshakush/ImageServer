@@ -21,7 +21,7 @@ using namespace utility;
 class ServerRequest {
 
 public: 
-	ServerRequest(http_request message) : m_requestMessage(message) {
+	ServerRequest(http_request message) : m_requestMessage(message), m_fileName(L""){
 		init();
 	}
 
@@ -67,10 +67,29 @@ private:
 			.wait();
 		//this wait here makes it synchronous
 		m_jsonRequest = answer;
+
+		web::uri relative_uri_p = m_requestMessage.relative_uri();
+		web::uri absolute_uri_p = m_requestMessage.absolute_uri();
+		web::uri request_uri_p = m_requestMessage.request_uri();
+		string_t queryParameters = relative_uri_p.query();
+
+		string_t code;
+		if (queryParameters.find(L"="))		{
+			
+			string_t name = queryParameters.substr(0, queryParameters.find(L"="));
+			m_fileName = queryParameters.substr(queryParameters.find(L"=") + 1, queryParameters.size() - 1);
+		}	
+				
+	}
+
+	string_t getFileName() {
+		return m_fileName;
 	}
 
 	const http_request m_requestMessage;
 	web::json::value m_jsonRequest;
+	string_t m_fileName;
+	
 };
 
 typedef shared_ptr<ServerRequest> ServerRequestPtr;
