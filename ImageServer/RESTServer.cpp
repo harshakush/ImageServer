@@ -3,20 +3,19 @@
 
 void RestServer::handle_get(http_request message) {
 	ServerRequestPtr request = ServerRequestPtr(new ServerRequest(message));	
-	ServerResponsePtr responsePtr = m_dispatcher.dispatch(request);
-	string_t fileName = request->getFileName();
-	if (responsePtr->getBufferStream() != NULL) {
+	ServerResponsePtr responsePtr = m_dispatcher.dispatch(request);	
+	
+	switch (responsePtr->getResponseType()) {
+		case ServerResponseType::STREAM:
+			message.reply(status_codes::OK, responsePtr->getBufferStream(), responsePtr->getContenType());
+			break;
+		case ServerResponseType::JSON:
+			message.reply(status_codes::OK, responsePtr->getResponse());
+			break;
 
-		/*message.get_response().then([fileName](http_response response) {
-			response.headers().add(L"FileName", fileName);
-		}
-		); */
-		//.add(L"FileName", request->getFileName());
-		message.reply(status_codes::OK, responsePtr->getBufferStream(), responsePtr->getContenType());
-	}
-	else {
-		
-		message.reply(status_codes::OK, responsePtr->getResponse());
+		default: 
+			message.reply(status_codes::OK, responsePtr->getResponse());
+
 	}
 }
 

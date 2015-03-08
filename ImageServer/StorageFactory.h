@@ -15,6 +15,9 @@ using namespace std;
 
 class StorageFactory{
 
+private:
+	StorageFactory() {
+	}
 public:
 	//Todo : How is this thread safe in C++11.
 	//read about it.

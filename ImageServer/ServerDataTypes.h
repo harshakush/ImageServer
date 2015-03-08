@@ -14,7 +14,15 @@ namespace ServerDataTypes {
 		IDELETE = 3
 	};
 
-	typedef rest_methods rest_operation;	
+	typedef rest_methods rest_operation;
+
+	enum class ServerResponseType 
+	{ 
+		JSON, 
+		STREAM, 
+		INVALID	
+	};
+		
 	
 }
 

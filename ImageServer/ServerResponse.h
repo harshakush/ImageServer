@@ -4,8 +4,10 @@
 
 #include <memory>
 #include <string>
+#include "ServerDataTypes.h"
 using namespace std;
 using namespace web;
+using namespace ServerDataTypes;
 
 /// <This class has all response related methods>
 /// <As of now json only>
@@ -13,21 +15,16 @@ using namespace web;
 
 class ServerResponse {
 public:
-	ServerResponse() {
-
+	ServerResponse() :m_contentType(L"application/json"), m_responseType(ServerDataTypes::ServerResponseType::JSON ){
+		
 	}
 	void setResponse(utf16string response) {
 		m_response = response;		
 	}
 
 	void setContentType(string_t contentType){
-		if (contentType.empty()) {
-			m_contentType = L"application/json";
-		}
-		else {
-			m_contentType = contentType;
-		}
-
+		m_contentType = contentType;
+		m_responseType = ServerDataTypes::ServerResponseType::STREAM;		
 	}
 
 	string_t getContenType() {
@@ -40,6 +37,9 @@ public:
 		return m_json;
 	}
 
+	ServerDataTypes::ServerResponseType getResponseType() {
+		return m_responseType;
+	}
 
 	/* sample code.
 	*/
@@ -52,6 +52,7 @@ public:
 
 	void setBufferStream(concurrency::streams::producer_consumer_buffer<unsigned char> buffer){
 		m_buffer = buffer;
+		m_responseType = ServerDataTypes::ServerResponseType::STREAM;
 	}
 
 	concurrency::streams::producer_consumer_buffer<unsigned char> getBufferStream() {
@@ -62,6 +63,7 @@ private :
 	json::value m_json;
 	string_t m_contentType;
 	concurrency::streams::producer_consumer_buffer<unsigned char> m_buffer;
+	ServerResponseType m_responseType;
 };
 typedef shared_ptr<ServerResponse> ServerResponsePtr;
 

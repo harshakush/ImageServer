@@ -12,13 +12,12 @@
 class StorageInterface {
 
 public:
-
-	virtual void writeFile(ServerRequestPtr request) = 0;
-	virtual void readFile(ServerRequestPtr request) = 0;
-	
 	virtual ~StorageInterface() {
 
 	}
+	virtual void writeFile(ServerRequestPtr request) = 0;
+	virtual ServerResponsePtr readFile(ServerRequestPtr request) = 0;
+	virtual json::value getAllFiles(ServerRequestPtr request) = 0;
 
 };
 typedef shared_ptr<StorageInterface> StorageInterfacePtr;
