@@ -29,7 +29,9 @@ public:
 
 	virtual json::value getAllFiles(ServerRequestPtr request, bool &);
 	virtual void writeFile(ServerRequestPtr request);	
-	virtual ServerResponsePtr readFile(ServerRequestPtr serverRequest);	
+	virtual ServerResponsePtr readFile(ServerRequestPtr serverRequest);
+
+	
 };
 
 
