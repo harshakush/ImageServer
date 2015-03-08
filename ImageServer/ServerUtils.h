@@ -2,6 +2,13 @@
 #define SERVER_UTILS
 
 #include<iostream>
+#include <stdio.h>  /* defines FILENAME_MAX */
+
+
+#include <direct.h>
+#define GetCurrentDir _getcwd
+
+
 #include <cpprest\asyncrt_utils.h>
 #include <cpprest\http_headers.h>
 #include <cpprest\http_msg.h>
@@ -39,6 +46,19 @@ public:
 		}
 
 		return L"";
+	}
+
+	static string_t getCurrentWorkingDirectory() {
+		char cCurrentPath[FILENAME_MAX];
+		if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath)))
+		{
+			return L"";
+		}
+
+		cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; 	
+		
+		string completePath = string(cCurrentPath);
+		return ::utility::conversions::to_utf8string(m_requestMessage.request_uri().to_string());
 	}
 	
 
