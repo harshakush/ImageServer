@@ -110,6 +110,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FileSystemsStorage.cpp" />
     <ClCompile Include="ImageProcessor.cpp" />
     <ClCompile Include="ImageServer.cpp" />
     <ClCompile Include="RESTServer.cpp" />

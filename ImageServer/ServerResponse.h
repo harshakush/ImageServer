@@ -15,7 +15,7 @@ using namespace ServerDataTypes;
 
 class ServerResponse {
 public:
-	ServerResponse() :m_contentType(L"application/json"), m_responseType(ServerDataTypes::ServerResponseType::JSON ){
+	ServerResponse() :m_contentType(L"application/json"), m_responseType(ServerDataTypes::ServerResponseType::JSON ), m_statusCode(status_codes::OK){
 		
 	}
 	void setResponse(utf16string response) {
@@ -58,12 +58,21 @@ public:
 	concurrency::streams::producer_consumer_buffer<unsigned char> getBufferStream() {
 		return m_buffer;
 	}
+	void setStatusCode(status_code aStatusCode)
+	{
+		m_statusCode = aStatusCode;
+	}
+	status_code getStatusCode()
+	{
+		return m_statusCode;
+	}
 private :
 	utf16string m_response;
 	json::value m_json;
 	string_t m_contentType;
 	concurrency::streams::producer_consumer_buffer<unsigned char> m_buffer;
 	ServerResponseType m_responseType;
+	status_code m_statusCode;
 };
 typedef shared_ptr<ServerResponse> ServerResponsePtr;
 

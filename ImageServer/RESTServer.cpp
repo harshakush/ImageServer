@@ -7,15 +7,16 @@ void RestServer::handle_get(http_request message) {
 	
 	switch (responsePtr->getResponseType()) {
 		case ServerResponseType::STREAM:
-			message.reply(status_codes::OK, responsePtr->getBufferStream(), responsePtr->getContenType());
+		//	message.reply(status_codes::OK, responsePtr->getBufferStream(), responsePtr->getContenType());
+			message.reply(responsePtr->getStatusCode(), responsePtr->getBufferStream(), responsePtr->getContenType());
 			break;
 		case ServerResponseType::JSON:
-			message.reply(status_codes::OK, responsePtr->getResponse());
+			message.reply(responsePtr->getStatusCode(), responsePtr->getResponse());
 			break;
 
 		default: 
-			message.reply(status_codes::OK, responsePtr->getResponse());
-
+			message.reply(responsePtr->getStatusCode(), responsePtr->getResponse());
+			
 	}
 }
 

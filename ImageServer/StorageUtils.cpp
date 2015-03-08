@@ -10,9 +10,9 @@ void StorageUtils::saveFile(ServerRequestPtr request) {
 }
 
 
-json::value StorageUtils::getAllFiles(ServerRequestPtr request) {
+json::value StorageUtils::getAllFiles(ServerRequestPtr request, bool & bIsDirectoryEmpty) {
 	StorageInterfacePtr storage = StorageFactory::getStorage();
-	return storage->getAllFiles(request);
+	return storage->getAllFiles(request, bIsDirectoryEmpty);
 }
 
 ServerResponsePtr StorageUtils::extractFile(ServerRequestPtr request) {

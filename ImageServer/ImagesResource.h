@@ -16,8 +16,13 @@ public:
 
 	virtual ServerResponsePtr get(const ServerRequestPtr request){
 		if (request->getFileName().empty()) {
+			bool bIsDirectoryEmpty = FALSE;
 			ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-			response->setResponse(StorageUtils::getAllFiles(request));
+			response->setResponse(StorageUtils::getAllFiles(request, bIsDirectoryEmpty));
+			if (bIsDirectoryEmpty)
+			{
+				response->setStatusCode(status_codes::NoContent);
+			}
 			return response;
 		}
 		return StorageUtils::extractFile(request);

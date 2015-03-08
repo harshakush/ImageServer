@@ -26,16 +26,16 @@ using namespace web::http::client;          // HTTP client features
 
 void DisplayJSONValue(json::value doc)
 {
-	for (auto& game : doc.at(U("fileList")).as_array())
-	{
-		for (auto& p : game.as_object())
+		for (auto& game : doc.at(U("fileList")).as_array())
 		{
-			string_t name = p.first;
-			string_t value = p.second.as_string();
-			wcout << name << L":" << value << endl;
-				
+			for (auto& p : game.as_object())
+			{
+				string_t name = p.first;
+				string_t value = p.second.as_string();
+				wcout << name << L":" << value << endl;
+
+			}
 		}
-	}
 }
 
 
@@ -48,11 +48,31 @@ pplx::task<void> RequestJSONValueAsync()
 	http_client client(L"http://localhost:6060/rest/images");
 	return client.request(methods::GET).then([](http_response response) -> pplx::task<json::value>
 	{
+		std::vector<web::json::value> arr;
 		if (response.status_code() == status_codes::OK)
 		{
 			return response.extract_json();
 		}
-
+		else if (response.status_code() == status_codes::NoContent)
+		{
+			json::value obj;
+			obj[L"StatusCode"] = json::value::string(U("204 No Content"));
+			obj[L"ERROR"] = json::value::string(U("  Not found any images"));
+			arr.push_back(obj);
+			json::value jsonObjAsArray;
+			jsonObjAsArray[L"fileList"] = json::value::array(arr);
+			return pplx::task_from_result(jsonObjAsArray);
+		}
+		else if (response.status_code() == status_codes::NotFound)
+		{
+			json::value obj;
+			obj[L"StatusCode"] = json::value::string(U("404 Not Found"));
+			obj[L"ERROR"] = json::value::string(U(" Requested image could not be found"));
+			arr.push_back(obj);
+			json::value jsonObjAsArray;
+			jsonObjAsArray[L"fileList"] = json::value::array(arr);
+			return pplx::task_from_result(jsonObjAsArray);
+		}
 		// Handle error cases, for now return empty json value... 
 		return pplx::task_from_result(json::value());
 	})
