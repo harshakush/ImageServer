@@ -10,6 +10,9 @@
 #include <cpprest\asyncrt_utils.h>
 #include<cpprest\producerconsumerstream.h>
 
+#include <stdio.h>  /* defines FILENAME_MAX */
+#include <direct.h>
+#define GetCurrentDir _getcwd
 using namespace std;
 using namespace web::http;
 using namespace concurrency::streams;
@@ -40,6 +43,18 @@ public:
 
 		return L"";
 	}
+
+	static string_t getCurrentWorkingDirectory() {
+		char cCurrentPath[FILENAME_MAX];
+		if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath))) {
+			return L"";
+		}
+		cCurrentPath[sizeof(cCurrentPath) - 1] = '\0';
+
+		string completePath = string(cCurrentPath);
+		return ::utility::conversions::to_string_t(completePath);
+	}
+
 	
 
 };
