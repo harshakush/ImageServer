@@ -15,9 +15,11 @@
 #include<cpprest\producerconsumerstream.h>
 
 #include <log4cplus/logger.h>
+#include<log4cplus/fileappender.h>
+
 #include <log4cplus/loggingmacros.h>
 #include <log4cplus/configurator.h>
-#include <iomanip>
+//#include <iomanip>
 
 //#pragma comment(lib, "log4cplusD")
 using namespace log4cplus;
@@ -233,18 +235,11 @@ pplx::task<void> uploadFile() {
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-
-	initialize();
-	BasicConfigurator config;
-	config.configure();
-
-	Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("_tmain"));
-	LOG4CPLUS_WARN(logger, LOG4CPLUS_TEXT("Hello, World!"));
 	
-	/*PropertyConfigurator config(U("logs.properties"));
+	PropertyConfigurator config(U("logs.properties"));
 	config.configure();
-	Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("mylogger"));
-	LOG4CPLUS_WARN(logger, "Hello, World!");*/
+	Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("_tmain"));
+	LOG4CPLUS_WARN(logger, "Hello, World!");
 	
 	while (1) {
 		int input;
