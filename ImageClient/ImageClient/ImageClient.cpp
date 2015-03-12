@@ -14,6 +14,14 @@
 #include <cpprest\asyncrt_utils.h>
 #include<cpprest\producerconsumerstream.h>
 
+#include <log4cplus/logger.h>
+#include <log4cplus/loggingmacros.h>
+#include <log4cplus/configurator.h>
+#include <iomanip>
+
+//#pragma comment(lib, "log4cplusD")
+using namespace log4cplus;
+
 using namespace std;
 using namespace web;
 using namespace concurrency::streams;
@@ -226,6 +234,18 @@ pplx::task<void> uploadFile() {
 int _tmain(int argc, _TCHAR* argv[])
 {
 
+	initialize();
+	BasicConfigurator config;
+	config.configure();
+
+	Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("_tmain"));
+	LOG4CPLUS_WARN(logger, LOG4CPLUS_TEXT("Hello, World!"));
+	
+	/*PropertyConfigurator config(U("logs.properties"));
+	config.configure();
+	Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("mylogger"));
+	LOG4CPLUS_WARN(logger, "Hello, World!");*/
+	
 	while (1) {
 		int input;
 		cout << "Please enter 1 for get and 2 for post 3 for download";
