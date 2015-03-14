@@ -23,12 +23,12 @@ public:
 	ServerDispatcher() {
 
 	}
-	RestInterfacePtr  getRESTResource(ServerDataTypes::rest_operation operationType, string method);
+	RestInterfacePtr  getRESTResource(ServerDataTypes::rest_operation operationType, string_t method);
 
 	ServerResponsePtr  dispatch(ServerRequestPtr request);
-	
+
 private:
-	ResourceTable m_resourceTable;	
+	ResourceTable m_resourceTable;
 };
 
 typedef shared_ptr<ServerDispatcher> ServerDispatcherPtr;

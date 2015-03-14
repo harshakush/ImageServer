@@ -16,11 +16,12 @@ namespace ServerDataTypes {
 
 	typedef rest_methods rest_operation;
 
-	enum class ServerResponseType 
-	{ 
-		JSON, 
-		STREAM, 
-		INVALID	
+	enum class ServerResponseType
+	{
+		JSON,
+		STREAM,
+		PLAIN_TEXT,
+		INVALID
 	};
 		
 	

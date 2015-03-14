@@ -44,6 +44,12 @@ public:
 		return L"";
 	}
 
+	static string_t getRelativeUri(http_request request) {
+		string_t relativeUri = request.relative_uri().to_string();
+		string_t relativeUriFormatted = relativeUri.substr(0, relativeUri.find(L"?"));
+		return relativeUriFormatted;
+	}
+
 	static string_t getCurrentWorkingDirectory() {
 		char cCurrentPath[FILENAME_MAX];
 		if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath))) {
@@ -55,7 +61,7 @@ public:
 		return ::utility::conversions::to_string_t(completePath);
 	}
 
-	
+
 
 };
 

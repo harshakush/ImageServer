@@ -19,31 +19,30 @@ public:
 			bool bIsDirectoryEmpty = FALSE;
 			ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
 			response->setResponse(StorageUtils::getAllFiles(request, bIsDirectoryEmpty));
-			if (bIsDirectoryEmpty)
-			{
+			if (bIsDirectoryEmpty) {
 				response->setStatusCode(status_codes::NoContent);
 			}
 			return response;
 		}
 		return StorageUtils::extractFile(request);
-		
+
 	}
 
 	virtual ServerResponsePtr post(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
 		StorageUtils::saveFile(request);
-		response->setResponse(L"file uploaded successfully");
+		response->setResponseAsString(L"file uploaded successfully");
 		return response;
 	}
 	virtual ServerResponsePtr put(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
 		StorageUtils::saveFile(request);
-		response->setResponse(L"simple response");
+		response->setResponseAsString(L"simple response");
 		return response;
 	}
 	virtual ServerResponsePtr del(const ServerRequestPtr request) {
 		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		response->setResponse(L"simple response");
+		response->setResponseAsString(L"simple response");
 		return response;
 	}
 

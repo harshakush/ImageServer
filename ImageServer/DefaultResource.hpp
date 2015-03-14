@@ -3,8 +3,9 @@
 
 #include "RestInterface.h"
 #include <memory>
-
+#include "ServerDataTypes.h"
 using namespace std;
+
 static const utf16string RESOURCE_NOT_FOUND = L"Resource not found";
 
 class DefaultResource : public RestInterface {
@@ -12,24 +13,28 @@ public:
 	DefaultResource() {
 	}
 
+	ServerResponsePtr prepareResponse() {
+		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
+		response->setResponseAsString(RESOURCE_NOT_FOUND);
+		response->setResponseType(ServerDataTypes::ServerResponseType::INVALID);
+		response->setStatusCode(status_codes::NotFound);
+		return response;
+	}
+
 	virtual ServerResponsePtr get(const ServerRequestPtr request){
-		return ServerResponsePtr(new ServerResponse());
+		return prepareResponse();
 	}
 
 	virtual ServerResponsePtr post(const ServerRequestPtr request) {
-		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		response->setResponse(RESOURCE_NOT_FOUND);
-		return response;
+		return prepareResponse();
 	}
+
 	virtual ServerResponsePtr put(const ServerRequestPtr request) {
-		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		response->setResponse(RESOURCE_NOT_FOUND);
-		return response;
+		return prepareResponse();
 	}
+
 	virtual ServerResponsePtr del(const ServerRequestPtr request) {
-		ServerResponsePtr response = ServerResponsePtr(new ServerResponse());
-		response->setResponse(RESOURCE_NOT_FOUND);
-		return response;
+		return prepareResponse();
 	}
 
 	virtual ServerResponsePtr dispatch(const ServerRequestPtr request) {

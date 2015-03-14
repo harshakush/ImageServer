@@ -15,27 +15,39 @@ using namespace ServerDataTypes;
 
 class ServerResponse {
 public:
-	ServerResponse() :m_contentType(L"application/json"), m_responseType(ServerDataTypes::ServerResponseType::JSON ), m_statusCode(status_codes::OK){
-		
+
+	ServerResponse() :m_contentType(L"application/json"), m_responseType(ServerDataTypes::ServerResponseType::JSON), m_statusCode(status_codes::OK){
+
 	}
-	void setResponse(utf16string response) {
-		m_response = response;		
+
+	void setResponseAsString(utf16string response) {
+		m_response = response;
+	}
+
+	string_t getResponseAsString() {
+		return m_response;
 	}
 
 	void setContentType(string_t contentType){
 		m_contentType = contentType;
-		m_responseType = ServerDataTypes::ServerResponseType::STREAM;		
+	}
+
+	void setResponseType(ServerDataTypes::ServerResponseType type) {
+		m_responseType = type;
 	}
 
 	string_t getContenType() {
 		return m_contentType;
 	}
+
 	void setResponse(json::value json) {
-			m_json = json;
+		m_json = json;
 	}
+
 	const json::value getResponse() {
 		return m_json;
 	}
+
 
 	ServerDataTypes::ServerResponseType getResponseType() {
 		return m_responseType;
@@ -58,15 +70,16 @@ public:
 	concurrency::streams::producer_consumer_buffer<unsigned char> getBufferStream() {
 		return m_buffer;
 	}
-	void setStatusCode(status_code aStatusCode)
-	{
+
+	void setStatusCode(status_code aStatusCode){
 		m_statusCode = aStatusCode;
 	}
-	status_code getStatusCode()
-	{
+
+	status_code getStatusCode(){
 		return m_statusCode;
 	}
-private :
+
+private:
 	utf16string m_response;
 	json::value m_json;
 	string_t m_contentType;

@@ -194,7 +194,7 @@ VOID WINAPI ServiceCtrlHandler(DWORD CtrlCode)
 
 DWORD WINAPI ServiceWorkerThread(LPVOID lpParam)
 {
-	//server = new RestServer(L"http://localhost:2323/restdemo");
+	
 	OutputDebugString(_T("My Sample Service: ServiceWorkerThread: Entry"));
 
 

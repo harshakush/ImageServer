@@ -21,7 +21,7 @@ using namespace utility;
 
 class ServerRequest {
 
-public: 
+public:
 	ServerRequest(http_request message) : m_requestMessage(message), m_fileName(L""){
 		init();
 	}
@@ -56,9 +56,12 @@ public:
 		return m_fileName;
 	}
 
-	
+	string_t getRelativeUri() {
+		return m_relative_formatted_uri;
+	}
+
 private:
-	
+
 	void init() {
 		web::json::value answer;
 		m_requestMessage.extract_json().then([&answer](pplx::task<web::json::value> task) {
@@ -72,24 +75,25 @@ private:
 		})
 			.wait();
 		//this wait here makes it synchronous
-		m_jsonRequest = answer;	
+		m_jsonRequest = answer;
 		m_relative_uri = m_requestMessage.relative_uri();
 		m_absolute_uri = m_requestMessage.absolute_uri();
 		m_request_uri = m_requestMessage.request_uri();
 
-		m_fileName = ServerUtils::getQueryParameter(m_requestMessage);					
+		m_fileName = ServerUtils::getQueryParameter(m_requestMessage);
+		m_relative_formatted_uri = ServerUtils::getRelativeUri(m_requestMessage);
 	}
 
-	
+
+
 private:
 	const http_request m_requestMessage;
 	web::json::value m_jsonRequest;
 	string_t m_fileName;
+	string_t m_relative_formatted_uri;
 	web::uri m_relative_uri;
 	web::uri m_absolute_uri;
-	web::uri m_request_uri;	
-
-	
+	web::uri m_request_uri;
 };
 
 typedef shared_ptr<ServerRequest> ServerRequestPtr;
