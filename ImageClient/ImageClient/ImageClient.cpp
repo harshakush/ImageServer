@@ -6,6 +6,9 @@
 //http://casablanca.codeplex.com/discussions/452833
 #include "stdafx.h"
 #include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <Windows.h>
 #include<cpprest\http_headers.h>
 #include<cpprest\http_msg.h>
 #include<cpprest\http_client.h>
@@ -167,19 +170,12 @@ pplx::task<void> downloadFile()
 
 
 
-pplx::task<void> uploadFile() {
-	string fileName = "Harsha.jpg";
-	string filePath = "C:\\Harsha.jpg";
 
-	string_t fileName_t;//to_string_t(const std::string &s)
 
-	cout << "Enter the file to be uploaded to server\n";
-	cin >> filePath;
-	fileName_t = to_string_t(filePath);
-
+pplx::task<void> uploadFile(string_t fileName_t) {
 
 	// Open file stream
-	concurrency::streams::basic_istream<unsigned char> fileStream = file_stream<unsigned char>::open_istream(to_string_t(filePath)).get();
+	concurrency::streams::basic_istream<unsigned char> fileStream = file_stream<unsigned char>::open_istream(fileName_t).get();
 
 	// Read file stream to string
 	concurrency::streams::stringstreambuf streamBuffer;
@@ -233,6 +229,29 @@ pplx::task<void> uploadFile() {
 
 }
 
+void  uploadDirectory(string_t aPath) {
+
+	vector<wstring> names;
+	TCHAR search_path1[200];
+	swprintf(search_path1, 200, L"%s\\*.*", aPath.c_str());
+	WIN32_FIND_DATA fd;
+	HANDLE hFind = ::FindFirstFile(search_path1, &fd);
+	if (hFind != INVALID_HANDLE_VALUE) {
+		do {
+			// read all (real) files in current folder
+			// , delete '!' read other 2 default folder . and ..
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+				names.push_back(fd.cFileName);
+			}
+		} while (::FindNextFile(hFind, &fd));
+		::FindClose(hFind);
+	}
+
+	for (wstring fileName : names) {
+		uploadFile(aPath + L"\\" + fileName);
+	}
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	
@@ -243,19 +262,29 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 	while (1) {
 		int input;
-		cout << "Please enter 1 for get and 2 for post 3 for download";
+		string_t fileName_t;
+		cout << "Please enter 1 for get and 2 for post-file 3 for download 4 for post-dir";
 		cin >> input;
+
 
 		switch (input) {
 
-		case 1: 
-			RequestJSONValueAsync().wait();
+		case 1:
+			RequestJSONValueAsync();
 			break;
-		case 2: uploadFile().wait();
+		case 2:
+			cout << "Enter the file to be uploaded to server\n";
+			wcin >> fileName_t;
+			uploadFile(fileName_t).wait();
 			break;
 		case 3:
 			downloadFile();
 			break;
+		case 4:
+			cout << "Enter the directory to upload";
+			wcin >> fileName_t;
+			uploadDirectory(fileName_t);
+
 		}
 		
 		cout << "Do you want to continue ? \n";
