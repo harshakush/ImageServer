@@ -3,9 +3,11 @@
 
 void RestServer::handle_get(http_request message) {
 	ServerRequestPtr request = ServerRequestPtr(new ServerRequest(message));	
-	ServerResponsePtr responsePtr = m_dispatcher.dispatch(request);	
-	
-	switch (responsePtr->getResponseType()) {
+
+	try {
+		ServerResponsePtr responsePtr = m_dispatcher.dispatch(request);
+		
+		switch (responsePtr->getResponseType()) {
 		case ServerResponseType::STREAM:
 			message.reply(responsePtr->getStatusCode(), responsePtr->getBufferStream(), responsePtr->getContenType());
 			break;
@@ -17,10 +19,16 @@ void RestServer::handle_get(http_request message) {
 			message.reply(responsePtr->getStatusCode(), responsePtr->getResponseAsString());
 			break;
 
-		default: 
+		default:
 			message.reply(responsePtr->getStatusCode(), responsePtr->getResponseAsString());
-			
+
+		}
 	}
+	catch (exception &e) {
+		message.reply(status_codes::InternalError, L"Some Internal error occured");
+	}
+	
+	
 }
 
 void RestServer::handle_put(http_request message) {

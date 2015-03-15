@@ -169,9 +169,6 @@ pplx::task<void> downloadFile()
 }
 
 
-
-
-
 pplx::task<void> uploadFile(string_t fileName_t) {
 
 	// Open file stream
@@ -263,7 +260,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (1) {
 		int input;
 		string_t fileName_t;
-		cout << "Please enter 1 for get and 2 for post-file 3 for download 4 for post-dir";
+
+		cout << "==========            Image Client - v1.0           ==========="<<endl;
+		cout << "==========            Please enter                  ==========="<<endl;
+		cout << "==========       1 for Get the file list            ==========="<<endl;
+		cout << "==========       2 for Uploading file               ==========="<<endl;
+		cout << "==========       3 for Downloading file             ==========="<<endl;
+		cout << "==========       4 for Uploading directory          ==========="<<endl;
+		cout << "==========       5 for Sync                         ==========="<<endl;
 		cin >> input;
 
 
@@ -275,7 +279,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		case 2:
 			cout << "Enter the file to be uploaded to server\n";
 			wcin >> fileName_t;
-			uploadFile(fileName_t).wait();
+			uploadFile(fileName_t);
 			break;
 		case 3:
 			downloadFile();

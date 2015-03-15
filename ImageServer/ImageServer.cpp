@@ -10,6 +10,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include <thread>
 #include "RESTServer.h"
 
 using namespace std;
@@ -24,7 +25,7 @@ HANDLE                g_ServiceStopEvent = INVALID_HANDLE_VALUE;
 
 VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv);
 VOID WINAPI ServiceCtrlHandler(DWORD);
-DWORD WINAPI ServiceWorkerThread(LPVOID lpParam);
+DWORD WINAPI ServiceWorkerThread();
 
 
 RestServer server (L"http://localhost:6060/rest");
@@ -62,7 +63,7 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv)
 	if (g_StatusHandle == NULL)
 	{
 		OutputDebugString(_T("ImageServer: ServiceMain: RegisterServiceCtrlHandler returned error"));
-		goto EXIT;
+		return;
 	}
 
 	// Tell the service controller we are starting
@@ -99,7 +100,9 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv)
 		{
 			OutputDebugString(_T("ImageServer: ServiceMain: SetServiceStatus returned error"));
 		}
-		goto EXIT;
+		//goto EXIT;
+		OutputDebugString(_T("ImageServer: ServiceMain: Exit"));
+		return;
 	}
 
 	// Tell the service controller we are started
@@ -114,12 +117,14 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv)
 	}
 
 	// Start the thread that will perform the main task of the service
-	HANDLE hThread = CreateThread(NULL, 0, ServiceWorkerThread, NULL, 0, NULL);
+	//HANDLE hThread = CreateThread(NULL, 0, ServiceWorkerThread, NULL, 0, NULL);
+	std::thread worker_thread(ServiceWorkerThread);
 
 	OutputDebugString(_T("ImageServer: ServiceMain: Waiting for Worker Thread to complete"));
 
 	// Wait until our worker thread exits effectively signaling that the service needs to stop
-	WaitForSingleObject(hThread, INFINITE);
+	//WaitForSingleObject(hThread, INFINITE);
+	worker_thread.join();
 
 	OutputDebugString(_T("ImageServer: ServiceMain: Worker Thread Stop Event signaled"));
 
@@ -141,7 +146,6 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv)
 		OutputDebugString(_T("ImageServer: ServiceMain: SetServiceStatus returned error" + GetLastError()));
 	}
 
-EXIT:
 	OutputDebugString(_T("ImageServer: ServiceMain: Exit"));
 
 	return;
@@ -192,7 +196,7 @@ VOID WINAPI ServiceCtrlHandler(DWORD CtrlCode)
 }
 
 
-DWORD WINAPI ServiceWorkerThread(LPVOID lpParam)
+DWORD WINAPI ServiceWorkerThread()
 {
 	
 	OutputDebugString(_T("My Sample Service: ServiceWorkerThread: Entry"));

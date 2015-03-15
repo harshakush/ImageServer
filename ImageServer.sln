@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageServer", "ImageServer\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageProcessorService", "ImageProcessing\ImageProcessorService\ImageProcessorService.vcxproj", "{2FA96546-B8B6-4BD6-B21A-4FF753AB698B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageClient", "ImageClient\ImageClient\ImageClient.vcxproj", "{0568B9DD-EABD-4A47-8808-8676AC777961}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -23,10 +21,6 @@ Global
 		{2FA96546-B8B6-4BD6-B21A-4FF753AB698B}.Debug|Win32.Build.0 = Debug|Win32
 		{2FA96546-B8B6-4BD6-B21A-4FF753AB698B}.Release|Win32.ActiveCfg = Release|Win32
 		{2FA96546-B8B6-4BD6-B21A-4FF753AB698B}.Release|Win32.Build.0 = Release|Win32
-		{0568B9DD-EABD-4A47-8808-8676AC777961}.Debug|Win32.ActiveCfg = Debug|Win32
-		{0568B9DD-EABD-4A47-8808-8676AC777961}.Debug|Win32.Build.0 = Debug|Win32
-		{0568B9DD-EABD-4A47-8808-8676AC777961}.Release|Win32.ActiveCfg = Release|Win32
-		{0568B9DD-EABD-4A47-8808-8676AC777961}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
