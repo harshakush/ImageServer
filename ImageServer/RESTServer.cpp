@@ -2,9 +2,11 @@
 #include "ServerResponse.h"
 
 void RestServer::handle_get(http_request message) {
+
 	ServerRequestPtr request = ServerRequestPtr(new ServerRequest(message));	
 
 	try {
+
 		ServerResponsePtr responsePtr = m_dispatcher.dispatch(request);
 		
 		switch (responsePtr->getResponseType()) {
@@ -24,10 +26,13 @@ void RestServer::handle_get(http_request message) {
 
 		}
 	}
+	//<Catch all the application defined exceptions here>//
+	catch (http_exception &e){
+		message.reply(status_codes::InternalError, e.what());
+	}
 	catch (exception &e) {
 		message.reply(status_codes::InternalError, L"Some Internal error occured");
-	}
-	
+	}	
 	
 }
 
@@ -64,6 +69,7 @@ void RestServer::stop() {
 
 RestServer::RestServer(const http::uri& url) : m_listener(http_listener(url)), m_uri(url)
 {
+	
 	m_listener.support(methods::GET,
 		std::tr1::bind(&RestServer::handle_get,
 		this,
@@ -81,4 +87,5 @@ RestServer::RestServer(const http::uri& url) : m_listener(http_listener(url)), m
 		std::tr1::bind(&RestServer::handle_delete,
 		this,
 		std::tr1::placeholders::_1));
+
 }

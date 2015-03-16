@@ -2,7 +2,7 @@
 #include "FileSystemsStorage.h"
 
 
-json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool & bIsDirectoryEmpty) {
+json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsDirectoryEmpty) {
 	ImageProcessor imgProcessor;
 	vector<wstring> imageList = imgProcessor.get_all_imagenames_from_dir(L"C:\\Personal");
 	json::value json;
