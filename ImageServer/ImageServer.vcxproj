@@ -67,6 +67,18 @@
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)\ImageServerLib\tinyxml2\include\tinyxml2.h" .</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>copying file for building</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>del tinyxml2.h</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>deleting the copied file(s) from include directory for building</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
