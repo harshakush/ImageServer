@@ -1,6 +1,10 @@
 
 #include "FileSystemsStorage.h"
-
+#include "FileNotFound.hpp"
+//Todo :Harsha 
+//Clean this code
+//Need to read the folder info from some cofig file
+//May be we will maintain a seperate one for this module
 
 json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsDirectoryEmpty) {
 	ImageProcessor imgProcessor;
@@ -50,6 +54,11 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
 	http_request request = serverRequest->getRequest();
 	string_t fileName_t = L"C:\\Personal\\";
 	fileName_t += serverRequest->getFileName();
+
+	if (!ServerUtils::hasFile(fileName_t)) {
+		FileNotFoundException fileNotFoundException(fileName_t);
+		throw fileNotFoundException;
+	}
 
 	// Open file stream
 	concurrency::streams::basic_istream<unsigned char> fileStream = file_stream<unsigned char>::open_istream(fileName_t).get();

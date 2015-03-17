@@ -91,7 +91,7 @@
     <ClInclude Include="BuildProperties.h" />
     <ClInclude Include="FileNotFound.hpp" />
     <ClInclude Include="FileSystemsStorage.h" />
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="InvalidRequest.h" />
     <ClInclude Include="RestServerException.h" />
     <ClInclude Include="ServerMessages.hpp" />
     <ClInclude Include="ImageProcessor.h" />

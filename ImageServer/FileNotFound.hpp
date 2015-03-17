@@ -8,12 +8,12 @@ public:
 	}
 
 	string_t what() {
-		string_t error_message = L"File not found :"+ m_fileName;
+		string_t error_message = ServerMessages::FILE_NOT_FOUND + m_fileName;
 		return error_message;
 	}
 
 	virtual status_code getStatusCode() {
-		return status_codes::NoContent;
+		return status_codes::NotFound;
 	}
 
 	string_t m_fileName;

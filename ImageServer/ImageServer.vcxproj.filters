@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{c71f54be-046a-4be7-b7b0-98c73e4de7b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -29,12 +32,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ServerDispatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RESTServerListner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ServerOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImagesResource.h">
@@ -78,6 +75,18 @@
     </ClInclude>
     <ClInclude Include="ImageProcessor.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileNotFound.hpp">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerMessages.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RestServerException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="InvalidRequest.h">
+      <Filter>Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

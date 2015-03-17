@@ -10,28 +10,20 @@
 #include <cpprest\asyncrt_utils.h>
 #include<cpprest\producerconsumerstream.h>
 
-#include <stdio.h>  /* defines FILENAME_MAX */
+#include <stdio.h> 
 #include <direct.h>
+#include <sys/stat.h>
+
 #define GetCurrentDir _getcwd
 using namespace std;
 using namespace web::http;
 using namespace concurrency::streams;
 using namespace utility;
 
-
-
 class ServerUtils
 {
 public:
-	static void getRestDemo() {
-		string storage = "Harsha";
-	}
-
-	static void return_failed() {
-		string storage = "failed";
-	}
-
-	//this will return map, will be done when required.
+	// <this will return map, will be done when required.>//
 	static string_t getQueryParameter(http_request request){
 		string_t queryParameter = request.relative_uri().query();
 
@@ -44,12 +36,14 @@ public:
 		return L"";
 	}
 
+	//< Gets the relative url /images e.g >//
 	static string_t getRelativeUri(http_request request) {
 		string_t relativeUri = request.relative_uri().to_string();
 		string_t relativeUriFormatted = relativeUri.substr(0, relativeUri.find(L"?"));
 		return relativeUriFormatted;
 	}
 
+	//< Gets the current working directory path >//
 	static string_t getCurrentWorkingDirectory() {
 		char cCurrentPath[FILENAME_MAX];
 		if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath))) {
@@ -61,8 +55,11 @@ public:
 		return ::utility::conversions::to_string_t(completePath);
 	}
 
-
-
+	static bool hasFile(string_t fileName) {
+			struct _stat buffer;
+			return (_wstat(fileName.c_str(), &buffer) == 0);
+		}
+	
 };
 
 #endif
