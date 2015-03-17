@@ -11,7 +11,14 @@
 #include <set>
 #include <string>
 #include "RESTServer.h"
+#include "BuildProperties.h"
+#include <log4cplus/logger.h>
+#include <log4cplus/loggingmacros.h>
+#include <log4cplus/configurator.h>
+#include <iomanip>
 
+
+using namespace log4cplus;
 using namespace std;
 
 #define TRACE(msg)            wcout << msg
@@ -26,9 +33,10 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv);
 VOID WINAPI ServiceCtrlHandler(DWORD);
 DWORD WINAPI ServiceWorkerThread(LPVOID lpParam);
 
-
-RestServer server (L"http://localhost:6060/rest");
-
+//Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("_tmain"));
+wstring wstr = BuildProperties::getHost();
+RestServer server(wstr);
+//RestServer server (L"http://localhost:6060/rest");
 
 int _tmain(int argc, TCHAR *argv[])
 {
@@ -194,6 +202,10 @@ VOID WINAPI ServiceCtrlHandler(DWORD CtrlCode)
 
 DWORD WINAPI ServiceWorkerThread(LPVOID lpParam)
 {
+	//PropertyConfigurator config(U("logs.properties"));
+	//config.configure();
+	//Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("_tmain"));
+//	LOG4CPLUS_WARN(logger, wstr);
 	
 	OutputDebugString(_T("My Sample Service: ServiceWorkerThread: Entry"));
 

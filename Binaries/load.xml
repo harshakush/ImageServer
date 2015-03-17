@@ -1,5 +1,5 @@
-<?xml version="1.0" standalone=no>
+<?xml version="1.0" standalone="no"?>
 	<!-- Our to do list data -->
 	<ImageServerConfig>
-		<hostip>http:\\localhost:6060\\</hostip>
+		<hostip>http://localhost:6060/rest</hostip>
 	</ImageServerConfig>

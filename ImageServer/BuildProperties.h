@@ -1,9 +1,10 @@
 #ifndef BUILD_PROP_HEADER
 #define BUILD_PROP_HEADER
 #include <iostream>
-#include "tinyxml.h"
+#include "tinyxml2.h"
 
 using namespace std;
+using namespace tinyxml2;
 
 class BuildProperties
 {
@@ -22,20 +23,16 @@ public:
 		return m_hostEndpoint;
 	}
 
-	 string getHost() {
+	 static wstring getHost() {
 
-		 try {
-			 TiXmlDocument m_doc("C:\\load.xml");
-			 m_doc.LoadFile();
-			 TiXmlElement* root = m_doc.FirstChildElement("ImageServerConfig");
+				tinyxml2::XMLDocument doc;
+				doc.LoadFile("C:\\load.xml");
+				const char *val = doc.FirstChildElement("ImageServerConfig")->FirstChildElement("hostip")->GetText();
+				string value(val);
+				wstring ws;
+				ws.assign(value.begin(), value.end());
+				return ws;
 
-			 TiXmlElement* host = root->FirstChildElement("hostip");
-			 return host->GetText();
-		 }
-		 catch (exception e) {
-			 return "";
-		 }
-		
 	}
 private:
 	string m_hostip;
