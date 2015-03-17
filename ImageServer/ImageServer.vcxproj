@@ -92,7 +92,11 @@
   <ItemGroup>
     <ClInclude Include="..\ImageServerLib\tinyxml2\include\tinyxml2.h" />
     <ClInclude Include="BuildProperties.h" />
+    <ClInclude Include="FileNotFound.hpp" />
     <ClInclude Include="FileSystemsStorage.h" />
+    <ClInclude Include="InvalidRequest.h" />
+    <ClInclude Include="RestServerException.h" />
+    <ClInclude Include="ServerMessages.hpp" />
     <ClInclude Include="ImageProcessor.h" />
     <ClInclude Include="ResourceTable.hpp" />
     <ClInclude Include="ImagesResource.h" />
@@ -100,8 +104,6 @@
     <ClInclude Include="RESTServer.h" />
     <ClInclude Include="ServerDataTypes.h" />
     <ClInclude Include="ServerDispatcher.h" />
-    <ClInclude Include="RESTServerListner.h" />
-    <ClInclude Include="ServerOperation.h" />
     <ClInclude Include="ServerParameters.h" />
     <ClInclude Include="ServerRequest.h" />
     <ClInclude Include="ServerResponse.h" />

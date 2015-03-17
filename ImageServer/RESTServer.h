@@ -24,6 +24,7 @@ private:
 	void handle_put(http_request message);
 	void handle_post(http_request message);
 	void handle_delete(http_request message);
+	void handle_all(http_request message);
 
 	http::uri m_uri;	
 	http_listener m_listener;	

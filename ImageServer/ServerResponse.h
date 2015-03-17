@@ -53,15 +53,6 @@ public:
 		return m_responseType;
 	}
 
-	/* sample code.
-	*/
-	void buildJson() {
-		m_json[L"key1"] = json::value::boolean(false);
-		m_json[L"key2"] = json::value::number(44);
-		m_json[L"key3"] = json::value::number(43.6);
-		m_json[L"key4"] = json::value::string(U("str"));
-	}
-
 	void setBufferStream(concurrency::streams::producer_consumer_buffer<unsigned char> buffer){
 		m_buffer = buffer;
 		m_responseType = ServerDataTypes::ServerResponseType::STREAM;

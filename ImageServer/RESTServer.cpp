@@ -1,11 +1,14 @@
 #include "RESTServer.h"
 #include "ServerResponse.h"
+#include "RestServerException.h"
 
-void RestServer::handle_get(http_request message) {
-	ServerRequestPtr request = ServerRequestPtr(new ServerRequest(message));	
-	ServerResponsePtr responsePtr = m_dispatcher.dispatch(request);	
-	
-	switch (responsePtr->getResponseType()) {
+void RestServer::handle_all(http_request message) {
+	ServerRequestPtr request = ServerRequestPtr(new ServerRequest(message));
+	try {
+
+		ServerResponsePtr responsePtr = m_dispatcher.dispatch(request);
+
+		switch (responsePtr->getResponseType()) {
 		case ServerResponseType::STREAM:
 			message.reply(responsePtr->getStatusCode(), responsePtr->getBufferStream(), responsePtr->getContenType());
 			break;
@@ -17,23 +20,37 @@ void RestServer::handle_get(http_request message) {
 			message.reply(responsePtr->getStatusCode(), responsePtr->getResponseAsString());
 			break;
 
-		default: 
+		default:
 			message.reply(responsePtr->getStatusCode(), responsePtr->getResponseAsString());
-			
+
+		}
 	}
+	//<Catch all the application defined exceptions here>//
+	catch (RestServerException &e){
+		message.reply(e.getStatusCode(), e.what());
+	}
+	catch (http_exception &e){
+		message.reply(status_codes::InternalError, e.what());
+	}
+	catch (exception &e) {
+		message.reply(status_codes::InternalError, ServerMessages::INTERNAL_ERROR);
+	}
+
+}
+
+
+void RestServer::handle_get(http_request message) {
+	handle_all(message);
 }
 
 void RestServer::handle_put(http_request message) {
-	message.reply(status_codes::OK,
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
+	handle_all(message);
 }
 void RestServer::handle_post(http_request message) {
-	message.reply(status_codes::OK,
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
+	handle_all(message);
 }
 void RestServer::handle_delete(http_request message) {
-	message.reply(status_codes::OK,
-		m_dispatcher.dispatch(ServerRequestPtr(new ServerRequest(message)))->getResponse());
+	handle_all(message);
 }
 
 void RestServer::start() {
@@ -56,6 +73,7 @@ void RestServer::stop() {
 
 RestServer::RestServer(const http::uri& url) : m_listener(http_listener(url)), m_uri(url)
 {
+	
 	m_listener.support(methods::GET,
 		std::tr1::bind(&RestServer::handle_get,
 		this,
@@ -73,4 +91,5 @@ RestServer::RestServer(const http::uri& url) : m_listener(http_listener(url)), m
 		std::tr1::bind(&RestServer::handle_delete,
 		this,
 		std::tr1::placeholders::_1));
+
 }

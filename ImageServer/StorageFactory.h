@@ -3,7 +3,6 @@
 * Make it thread safe. And read the configutaion to some class from xml.
 * 
 */
-
 #ifndef STORAGE_FACTORY_HEADER
 #define STORAGE_FACTORY_HEADER
 
