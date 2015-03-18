@@ -4,6 +4,7 @@
 
 #include "RestInterface.h"
 #include "StorageUtils.h"
+#include "ServerUtils.h"
 #include "ImageProcessor.h"
 
 using namespace std;
@@ -15,6 +16,7 @@ public:
 	}
 
 	virtual ServerResponsePtr get(const ServerRequestPtr request){
+		wstring path = ServerUtils::getCurrentWorkingDirectory();
 		if (request->getFileName().empty()) {
 			bool bIsDirectoryEmpty = FALSE;
 			ServerResponsePtr response = ServerResponsePtr(new ServerResponse());

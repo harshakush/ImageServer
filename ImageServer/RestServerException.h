@@ -1,3 +1,6 @@
+#ifndef REST_SERVER_EXCEPTION_HEADER
+#define REST_SERVER_EXCEPTION_HEADER
+
 #include<cpprest\details\basic_types.h>
 #include<cpprest\http_msg.h>
 #include "ServerMessages.hpp"
@@ -12,3 +15,5 @@ public:
 	virtual status_code getStatusCode() = 0;
 	virtual string_t what() = 0;
 };
+
+#endif

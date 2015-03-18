@@ -15,7 +15,7 @@ using namespace std;
 using namespace utility;
 
 template<typename T> RestInterface* createInstance() {
-	return new T;
+	return new T();
 }
 
 typedef std::map<string_t, RestInterface*(*)()> ResourceTableType;
@@ -24,8 +24,16 @@ typedef std::map<string_t, RestInterface*(*)()>::iterator ResourceTableTypeIter;
 class ResourceTable {
 
 public:
+
+	//<The map is url to functor						  >//
+	//<The method on execution always returns a new object>//
 	ResourceTable() {
 		m_resourceTable.insert(make_pair(L"/images", &createInstance<ImagesResource>));
+	}
+
+	//<release the map, otherwise these will be hanging>//
+	~ResourceTable() {
+		m_resourceTable.erase(m_resourceTable.begin(),m_resourceTable.end());
 	}
 
 
@@ -33,7 +41,7 @@ public:
 		ResourceTableTypeIter iterResource = m_resourceTable.find(endpoint);
 		RestInterface* restResource;
 
-		if (iterResource == m_resourceTable.end()) {
+		if (iterResource == m_resourceTable.end()){
 			restResource = new DefaultResource();
 		}
 		else {

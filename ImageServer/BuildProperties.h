@@ -2,6 +2,7 @@
 #define BUILD_PROP_HEADER
 #include <iostream>
 #include "tinyxml2.h"
+#include "ServerUtils.h"
 
 using namespace std;
 using namespace tinyxml2;
@@ -9,35 +10,42 @@ using namespace tinyxml2;
 class BuildProperties
 {
 public:
-	BuildProperties() {
-		m_hostip = "localhost";
-		m_hostEndpoint = "http://localhost:6060/rest";
-				
+	BuildProperties() :m_hostip(L"localhost"), m_hostEndpoint(L"http://localhost:6060/rest") {	
+		init();
 	}
 
-	string getHostIp() {
+	wstring getHostIp(){
 		return m_hostip;
 	}
 
-	string getHostEndPoint() {
+	wstring getHostEndPoint() {
 		return m_hostEndpoint;
 	}
 
-	 static wstring getHost() {
-
-				tinyxml2::XMLDocument doc;
-				doc.LoadFile("C:\\load.xml");
-				const char *val = doc.FirstChildElement("ImageServerConfig")->FirstChildElement("hostip")->GetText();
-				string value(val);
-				wstring ws;
-				ws.assign(value.begin(), value.end());
-				return ws;
-
+	void init() {
+		try {
+			tinyxml2::XMLDocument doc;
+			wstring path = ServerUtils::getCurrentWorkingDirectory();
+			doc.LoadFile("C:\\load.xml");
+			const char *val = doc.FirstChildElement("ImageServerConfig")->FirstChildElement("hostip")->GetText();
+			string value(val);
+			wstring ws;
+			ws.assign(value.begin(), value.end());
+			m_hostEndpoint = ws;
+		}
+		catch (exception &e) {
+			//eat it here.
+		}
 	}
+
+	wstring getHost() {		
+		 return m_hostEndpoint;
+	}
+
 private:
-	string m_hostip;
-	string m_hostEndpoint;
-	
+	wstring m_hostip;
+	wstring m_hostEndpoint;
+	wstring m_port;
 	
 };
 

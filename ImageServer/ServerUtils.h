@@ -2,6 +2,9 @@
 #define SERVER_UTILS
 
 #include<iostream>
+
+#include<Windows.h>
+#include<Pathcch.h>
 #include <cpprest\asyncrt_utils.h>
 #include <cpprest\http_headers.h>
 #include <cpprest\http_msg.h>
@@ -15,6 +18,8 @@
 #include <sys/stat.h>
 
 #define GetCurrentDir _getcwd
+
+
 using namespace std;
 using namespace web::http;
 using namespace concurrency::streams;
@@ -43,16 +48,27 @@ public:
 		return relativeUriFormatted;
 	}
 
+	void static replace_all(const std::wstring& oldStr, std::wstring& str, const std::wstring& newStr){
+		size_t pos = 0;
+		while ((pos = str.find(oldStr, pos)) != std::string::npos){
+			str.replace(pos, oldStr.length(), newStr);
+			pos += newStr.length();
+		}
+	}
+
 	//< Gets the current working directory path >//
 	static string_t getCurrentWorkingDirectory() {
-		char cCurrentPath[FILENAME_MAX];
-		if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath))) {
-			return L"";
-		}
-		cCurrentPath[sizeof(cCurrentPath) - 1] = '\0';
-
-		string completePath = string(cCurrentPath);
-		return ::utility::conversions::to_string_t(completePath);
+		HMODULE hModule = GetModuleHandleW(NULL);
+		WCHAR path[MAX_PATH];
+		GetModuleFileNameW(hModule, path, MAX_PATH);
+		//PathCchRemoveFileSpec(path, MAX_PATH);
+		wstring exePath(path);
+		wstring readPath;
+		wstring imageName = L"ImageServer.exe";
+		//exePath.replace("ImageServer.exe", "load.xml");
+		//replace_all(exePath.begin(), exePath.end(), "ImageServer.exe", "load.xml");
+		replace_all(imageName,exePath, readPath);
+		return exePath;
 	}
 
 	static bool hasFile(string_t fileName) {

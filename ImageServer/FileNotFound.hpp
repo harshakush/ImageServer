@@ -1,3 +1,7 @@
+
+#ifndef FILE_NOT_FOUND_HEADER
+#define FILE_NOT_FOUND_HEADER
+
 #include "RestServerException.h"
 
 using namespace web;
@@ -18,3 +22,5 @@ public:
 
 	string_t m_fileName;
 };
+
+#endif

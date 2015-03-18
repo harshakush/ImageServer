@@ -35,7 +35,8 @@ VOID WINAPI ServiceCtrlHandler(DWORD);
 DWORD WINAPI ServiceWorkerThread();
 
 //Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("_tmain"));
-wstring wstr = BuildProperties::getHost();
+BuildProperties bp;
+wstring wstr = bp.getHost();
 RestServer server(wstr);
 //RestServer server (L"http://localhost:6060/rest");
 
