@@ -1,5 +1,5 @@
-1. Add support for logging. Preferrably log4cpp.
-2. Add support for database. Preferrably postgres.
-3. Integrate image apis with ImagesResource file.
-4. Design the exception heirarchy.
-5. Define a xml file for managing the configuration.
+1. Add support for logging. Preferrably log4cpp. [MM - 50%]
+2. Add support for database. Preferrably postgres. [Decided to go with JSON stored in plat text files for v1.0]
+3. Integrate image apis with ImagesResource file. [ Next Item]
+4. Design the exception heirarchy. [Completed]
+5. Define a xml file for managing the configuration. [Completed, some basic issues need to be fixed]
