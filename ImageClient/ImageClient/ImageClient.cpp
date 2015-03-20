@@ -37,7 +37,7 @@ using namespace web::http;                  // Common HTTP functionality
 using namespace web::http::client;          // HTTP client features
 
 
-void DisplayJSONValue(json::value doc)
+void DisplayJSONValue(json::value doc, vector<wstring> &fileList)
 {
 		for (auto& game : doc.at(U("fileList")).as_array())
 		{
@@ -46,18 +46,20 @@ void DisplayJSONValue(json::value doc)
 				string_t name = p.first;
 				string_t value = p.second.as_string();
 				wcout << name << L":" << value << endl;
-
+				fileList.push_back(value);
+					
 			}
 		}
 }
 
 
 // Retrieves a JSON value from an HTTP request.
-pplx::task<void> RequestJSONValueAsync()
+pplx::task<void> getFileListAsync(bool display,vector<wstring> &returnList)
 {
 	// TODO: To successfully use this example, you must perform the request  
 	// against a server that provides JSON data.  
 	// This example fails because the returned Content-Type is text/html and not application/json.
+	
 	http_client client(L"http://localhost:6060/rest/images");
 	return client.request(methods::GET).then([](http_response response) -> pplx::task<json::value>
 	{
@@ -89,12 +91,12 @@ pplx::task<void> RequestJSONValueAsync()
 		// Handle error cases, for now return empty json value... 
 		return pplx::task_from_result(json::value());
 	})
-		.then([](pplx::task<json::value> previousTask)
+		.then([&returnList,&display](pplx::task<json::value> previousTask)
 	{
-		try
-		{
-			const json::value& v = previousTask.get();			
-			DisplayJSONValue(v);
+		try {
+			const json::value& v = previousTask.get();				
+			DisplayJSONValue(v, returnList);
+		
 		}
 		catch (const http_exception& e)
 		{
@@ -108,31 +110,26 @@ pplx::task<void> RequestJSONValueAsync()
 	/* Output:
 	Content-Type must be application/json to extract (is: text/html)
 	*/
+	
 }
 
-pplx::task<void> downloadFile()
-{
 
-		// TODO: To successfully use this example, you must perform the request  
-	// against a server that provides JSON data.  
-	// This example fails because the returned Content-Type is text/html and not application/json.
 
-	string fileName;
-	cout << "Enter the file to be downloaded" << endl;
-	cin >> fileName;
+pplx::task<void> downloadFileByName(const wstring &fileName) {
 
-	string uri = "http://localhost:6060/rest/images?fileName=";
+	wstring uri = L"http://localhost:6060/rest/images?fileName=";
 	uri += fileName;
-	string_t uri_t = utility::conversions::to_string_t(uri);
-	http_client client(uri_t);
+	http_client client(uri);
+	wstring fileNameLocal(fileName.c_str());
 
-	return client.request(methods::GET).then([fileName](http_response response)
+
+	return client.request(methods::GET).then([fileNameLocal](http_response response)
 	{
 		if (response.status_code() == status_codes::OK)
 		{
 			//web::http::http_headers::const_iterator fileNameIter = response.headers().find(L"FileName");
-			string dirPath = "C:\\downloaded\\" + fileName;
-			string_t fileToBeStored = utility::conversions::to_string_t(dirPath);
+			wstring fileToBeStored = L"C:\\downloaded\\" + fileNameLocal;
+			//string_t fileToBeStored = utility::conversions::to_string_t(dirPath);
 			try {
 				auto stream = concurrency::streams::fstream::open_ostream(
 					fileToBeStored,
@@ -144,15 +141,19 @@ pplx::task<void> downloadFile()
 				wcout << L"Error downloading file" << endl;
 				wcout << e.what();
 			}
+			catch (...) {
+				wcout << L"Error downloading file" << endl;				
 			}
+		}
 
-		return pplx::task_from_result(json::value());	
+		return pplx::task_from_result(json::value());
 	}).then([](pplx::task<json::value> previousTask)
 	{
 		try
 		{
 			const json::value& v = previousTask.get();
-			DisplayJSONValue(v);
+			vector<wstring> list;
+			DisplayJSONValue(v, list);
 		}
 		catch (const http_exception& e)
 		{
@@ -162,12 +163,15 @@ pplx::task<void> downloadFile()
 			wcout << ss.str();
 		}
 	});
-
-	/* Output:
-	Content-Type must be application/json to extract (is: text/html)
-	*/
 }
 
+
+pplx::task<void> downloadFile() {
+	wstring fileName;
+	cout << "Enter the file to be downloaded" << endl;
+	wcin >> fileName;
+	return downloadFileByName(fileName);
+}
 
 pplx::task<void> uploadFile(string_t fileName_t) {
 
@@ -249,6 +253,70 @@ void  uploadDirectory(string_t aPath) {
 	}
 }
 
+std::vector<wstring> getFileListFromDirectory(wstring dir) {
+	vector<wstring> names;
+	TCHAR search_path1[200];
+	swprintf(search_path1, 200, L"%s\\*.*", dir.c_str());
+	WIN32_FIND_DATA fd;
+	HANDLE hFind = ::FindFirstFile(search_path1, &fd);
+	if (hFind != INVALID_HANDLE_VALUE) {
+		do {
+			// read all (real) files in current folder
+			// , delete '!' read other 2 default folder . and ..
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+				names.push_back(fd.cFileName);
+			}
+		} while (::FindNextFile(hFind, &fd));
+		::FindClose(hFind);
+	}
+	return names;
+}
+std::vector<wstring> getFileList(json::value doc) {
+	std::vector<wstring> fileList;
+	for (auto& game : doc.at(U("fileList")).as_array()) {
+		for (auto& p : game.as_object()) {
+			string_t name = p.first;
+			string_t value = p.second.as_string();
+			fileList.push_back(value);
+		}
+	}
+
+	return fileList;
+}
+
+void sync() {
+	vector<wstring> downloadedFiles = getFileListFromDirectory(L"C:\\downloaded\\");
+	vector<wstring> fileListInServer;
+	getFileListAsync(false, fileListInServer).wait();
+
+	//upload
+	for (wstring fileNme : downloadedFiles) {		
+		if (std::find(fileListInServer.begin(), fileListInServer.end(), fileNme) == fileListInServer.end()) {		
+
+			try {
+				uploadFile(fileNme);
+			}
+			catch (exception &e){
+
+			}
+		}	
+	}
+
+	//download
+	for (wstring fileNme : fileListInServer) {
+		if (std::find(downloadedFiles.begin(), downloadedFiles.end(), fileNme) == downloadedFiles.end()) {			
+			try {
+				downloadFileByName(fileNme);
+			}
+			catch (exception &e){
+
+			}
+		}
+	}
+	
+	cout << " Sync will be completed, all requests pooled" << endl;
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	
@@ -256,6 +324,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	config.configure();
 	Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("_tmain"));
 	LOG4CPLUS_WARN(logger, "Hello, World!");
+	vector<wstring> listOfFiles;
 	
 	while (1) {
 		int input;
@@ -273,8 +342,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		switch (input) {
 
-		case 1:
-			RequestJSONValueAsync();
+		case 1:			
+			getFileListAsync(true, listOfFiles);
 			break;
 		case 2:
 			cout << "Enter the file to be uploaded to server\n";
@@ -288,7 +357,10 @@ int _tmain(int argc, _TCHAR* argv[])
 			cout << "Enter the directory to upload";
 			wcin >> fileName_t;
 			uploadDirectory(fileName_t);
-
+			break;
+		case 5:
+			cout << " Sync in progress...." << endl;
+			sync();
 		}
 		
 		cout << "Do you want to continue ? \n";
