@@ -16,6 +16,8 @@
 #include <stdio.h> 
 #include <direct.h>
 #include <sys/stat.h>
+#include <cvt/wstring>
+#include <codecvt>
 
 #define GetCurrentDir _getcwd
 
@@ -75,7 +77,21 @@ public:
 			struct _stat buffer;
 			return (_wstat(fileName.c_str(), &buffer) == 0);
 		}
-	
+	static wstring s2ws(const std::string& str)
+	{
+		typedef std::codecvt_utf8<wchar_t> convert_typeX;
+		std::wstring_convert<convert_typeX, wchar_t> converterX;
+
+		return converterX.from_bytes(str);
+	}
+
+	static string ws2s(const std::wstring& wstr)
+	{
+		typedef std::codecvt_utf8<wchar_t> convert_typeX;
+		std::wstring_convert<convert_typeX, wchar_t> converterX;
+
+		return converterX.to_bytes(wstr);
+	}
 };
 
 #endif

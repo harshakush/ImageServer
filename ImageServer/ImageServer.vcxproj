@@ -74,10 +74,11 @@
       <Message>copying file for building</Message>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>del tinyxml2.h</Command>
+      <Command>del tinyxml2.h
+copy "$(SolutionDir)Binaries\load.xml" $(TargetDir)</Command>
     </PostBuildEvent>
     <PostBuildEvent>
-      <Message>deleting the copied file(s) from include directory for building</Message>
+      <Message>deleting the copied file(s) from include directory for building, Copying load.xml to Debug directory</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

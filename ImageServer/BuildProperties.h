@@ -25,8 +25,9 @@ public:
 	void init() {
 		try {
 			tinyxml2::XMLDocument doc;
-			wstring path = ServerUtils::getCurrentWorkingDirectory();
-			doc.LoadFile("C:\\load.xml");
+			string exePath = ServerUtils::ws2s(ServerUtils::getCurrentWorkingDirectory());
+			string xmlFilePath = exePath + "\load.xml";
+			doc.LoadFile(xmlFilePath.c_str());
 			const char *val = doc.FirstChildElement("ImageServerConfig")->FirstChildElement("hostip")->GetText();
 			string value(val);
 			wstring ws;
