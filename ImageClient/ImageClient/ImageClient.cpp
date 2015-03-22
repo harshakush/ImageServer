@@ -162,6 +162,9 @@ pplx::task<void> downloadFileByName(const wstring &fileName) {
 			ss << e.what() << endl;
 			wcout << ss.str();
 		}
+		catch (...) {
+			//eat all
+		}
 	});
 }
 
@@ -222,6 +225,9 @@ pplx::task<void> uploadFile(string_t fileName_t) {
 		{
 			wcout << e.what() << endl;
 		}
+		catch (...) {
+			//eat all
+		}
 		wstring responseBodyU = response.extract_string().get();
 		string responseBody = utility::conversions::to_utf8string(responseBodyU);
 		status_code responseStatus = response.status_code();
@@ -271,6 +277,7 @@ std::vector<wstring> getFileListFromDirectory(wstring dir) {
 	}
 	return names;
 }
+
 std::vector<wstring> getFileList(json::value doc) {
 	std::vector<wstring> fileList;
 	for (auto& game : doc.at(U("fileList")).as_array()) {
@@ -294,9 +301,12 @@ void sync() {
 		if (std::find(fileListInServer.begin(), fileListInServer.end(), fileNme) == fileListInServer.end()) {		
 
 			try {
-				uploadFile(fileNme);
+				uploadFile(L"C:\\downloaded\\"+fileNme);
 			}
 			catch (exception &e){
+
+			}
+			catch (...) {
 
 			}
 		}	
@@ -309,6 +319,9 @@ void sync() {
 				downloadFileByName(fileNme);
 			}
 			catch (exception &e){
+
+			}
+			catch (...) {
 
 			}
 		}
