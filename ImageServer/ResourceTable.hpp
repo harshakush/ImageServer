@@ -9,6 +9,7 @@
 
 #include "RestInterface.h"
 #include "ImagesResource.h"
+#include "ImageAccountsResource.hpp"
 #include "BuildProperties.h"
 #include "DefaultResource.hpp"
 using namespace std;
@@ -29,6 +30,8 @@ public:
 	//<The method on execution always returns a new object>//
 	ResourceTable() {
 		m_resourceTable.insert(make_pair(L"/images", &createInstance<ImagesResource>));
+		m_resourceTable.insert(make_pair(L"/accounts", &createInstance<ImageAccountsResource>));
+		
 	}
 
 	//<release the map, otherwise these will be hanging>//

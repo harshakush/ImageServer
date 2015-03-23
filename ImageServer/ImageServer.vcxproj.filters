@@ -91,6 +91,12 @@
     <ClInclude Include="InvalidRequest.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="ImageAccount.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageAccountsResource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
