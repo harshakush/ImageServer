@@ -42,21 +42,16 @@ RestServer server(wstr);
 
 int _tmain(int argc, TCHAR *argv[])
 {
-	OutputDebugString(_T("ImageServer: Main: Entry"));
-
-	SERVICE_TABLE_ENTRY ServiceTable[] =
-	{
+	SERVICE_TABLE_ENTRY ServiceTable[] = {
 		{ SERVICE_NAME, (LPSERVICE_MAIN_FUNCTION)ServiceMain },
 		{ NULL, NULL }
 	};
 
-	if (StartServiceCtrlDispatcher(ServiceTable) == FALSE)
-	{
+	if (StartServiceCtrlDispatcher(ServiceTable) == FALSE) {
 		OutputDebugString(_T("ImageServer: Main: StartServiceCtrlDispatcher returned error" + GetLastError()));
 		return GetLastError();
 	}
 
-	OutputDebugString(_T("ImageServer: Main: Exit"));
 	return 0;
 }
 
@@ -65,7 +60,6 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv)
 {
 	DWORD Status = E_FAIL;
 
-	OutputDebugString(_T("ImageServer: ServiceMain: Entry"));
 
 	g_StatusHandle = RegisterServiceCtrlHandler(SERVICE_NAME, ServiceCtrlHandler);
 
@@ -84,8 +78,7 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv)
 	g_ServiceStatus.dwServiceSpecificExitCode = 0;
 	g_ServiceStatus.dwCheckPoint = 0;
 
-	if (SetServiceStatus(g_StatusHandle, &g_ServiceStatus) == FALSE)
-	{
+	if (SetServiceStatus(g_StatusHandle, &g_ServiceStatus) == FALSE) {
 		OutputDebugString(_T("ImageServer: ServiceMain: SetServiceStatus returned error"));
 	}
 
@@ -207,23 +200,12 @@ VOID WINAPI ServiceCtrlHandler(DWORD CtrlCode)
 
 DWORD WINAPI ServiceWorkerThread()
 {
-	//PropertyConfigurator config(U("logs.properties"));
-	//config.configure();
-	//Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("_tmain"));
-//	LOG4CPLUS_WARN(logger, wstr);
-	
-	OutputDebugString(_T("My Sample Service: ServiceWorkerThread: Entry"));
-
-
 	server.start();
-
 	//  Periodically check if the service has been requested to stop
+	//Will be replaced by C++ conditional variable.
 	while (WaitForSingleObject(g_ServiceStopEvent, 0) != WAIT_OBJECT_0)	{		
 	
 	}
-
-	OutputDebugString(_T("My Sample Service: ServiceWorkerThread: Exit"));
-
 	return ERROR_SUCCESS;
 }
 
