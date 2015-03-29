@@ -12,6 +12,8 @@
 #include "ImageAccountsResource.hpp"
 #include "BuildProperties.h"
 #include "DefaultResource.hpp"
+#include <thread>
+#include <mutex>
 using namespace std;
 using namespace utility;
 
@@ -28,10 +30,7 @@ public:
 
 	//<The map is url to functor						  >//
 	//<The method on execution always returns a new object>//
-	ResourceTable() {
-		m_resourceTable.insert(make_pair(L"/images", &createInstance<ImagesResource>));
-		m_resourceTable.insert(make_pair(L"/accounts", &createInstance<ImageAccountsResource>));
-		
+	ResourceTable() {			
 	}
 
 	//<release the map, otherwise these will be hanging>//
@@ -41,6 +40,11 @@ public:
 
 
 	RestInterfacePtr getResource(string_t endpoint) {
+		// Laxy initialization of the resources.
+		// Till the first request reaches. 
+		// This also thread safe initialization.
+
+		std::call_once(load_flag,&ResourceTable::init,this);
 		ResourceTableTypeIter iterResource = m_resourceTable.find(endpoint);
 		RestInterface* restResource;
 
@@ -50,11 +54,18 @@ public:
 		else {
 			restResource = iterResource->second();
 		}
-
 		return RestInterfacePtr(restResource);
 	}
 
+
 private:
+
+	void init() {
+		m_resourceTable.insert(make_pair(L"/images", &createInstance<ImagesResource>));
+		m_resourceTable.insert(make_pair(L"/accounts", &createInstance<ImageAccountsResource>));
+	}
+
+	std::once_flag load_flag;
 	BuildProperties m_properties;
 	ResourceTableType m_resourceTable;
 };
