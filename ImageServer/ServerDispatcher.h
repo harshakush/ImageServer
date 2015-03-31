@@ -23,7 +23,7 @@ public:
 	ServerDispatcher() {
 
 	}
-	RestInterfacePtr  getRESTResource(ServerDataTypes::rest_operation operationType, string_t method);
+	RestInterfacePtr  getRESTResource(ServerDataTypes::rest_operation operationType, wstring method);
 
 	ServerResponsePtr  dispatch(ServerRequestPtr request);
 

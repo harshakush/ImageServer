@@ -24,11 +24,11 @@ public:
 		m_response = response;
 	}
 
-	string_t getResponseAsString() {
+	wstring getResponseAsString() {
 		return m_response;
 	}
 
-	void setContentType(string_t contentType){
+	void setContentType(wstring contentType){
 		m_contentType = contentType;
 	}
 
@@ -36,7 +36,7 @@ public:
 		m_responseType = type;
 	}
 
-	string_t getContenType() {
+	wstring getContenType() {
 		return m_contentType;
 	}
 
@@ -73,7 +73,7 @@ public:
 private:
 	utf16string m_response;
 	json::value m_json;
-	string_t m_contentType;
+	wstring m_contentType;
 	concurrency::streams::producer_consumer_buffer<unsigned char> m_buffer;
 	ServerResponseType m_responseType;
 	status_code m_statusCode;

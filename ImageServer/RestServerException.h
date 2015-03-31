@@ -13,7 +13,7 @@ using namespace web::http;
 class RestServerException :public std::exception {
 public:
 	virtual status_code getStatusCode() = 0;
-	virtual string_t what() = 0;
+	virtual wstring what() = 0;
 };
 
 #endif

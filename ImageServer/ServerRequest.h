@@ -52,11 +52,11 @@ public:
 
 	}
 
-	string_t getFileName() {
+	wstring getFileName() {
 		return m_fileName;
 	}
 
-	string_t getRelativeUri() {
+	wstring getRelativeUri() {
 		return m_relative_formatted_uri;
 	}
 
@@ -89,8 +89,8 @@ private:
 private:
 	const http_request m_requestMessage;
 	web::json::value m_jsonRequest;
-	string_t m_fileName;
-	string_t m_relative_formatted_uri;
+	wstring m_fileName;
+	wstring m_relative_formatted_uri;
 	web::uri m_relative_uri;
 	web::uri m_absolute_uri;
 	web::uri m_request_uri;

@@ -6,11 +6,11 @@ using namespace web;
 
 class InvalidRequest :public RestServerException {
 public:
-	InvalidRequest(string_t fileName)  {
+	InvalidRequest(wstring fileName)  {
 	}
 
-	string_t what() {
-		string_t error_message = ServerMessages::INVALID_URL;
+	wstring what() {
+		wstring error_message = ServerMessages::INVALID_URL;
 		return error_message;
 	}
 

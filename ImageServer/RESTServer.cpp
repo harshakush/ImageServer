@@ -10,6 +10,7 @@ void RestServer::handle_all(http_request message) {
 
 		switch (responsePtr->getResponseType()) {
 		case ServerResponseType::STREAM:
+			message.headers().add(L"Transfer-Encoding", "chunked");
 			message.reply(responsePtr->getStatusCode(), responsePtr->getBufferStream(), responsePtr->getContenType());
 			break;
 		case ServerResponseType::JSON:

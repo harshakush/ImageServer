@@ -1,6 +1,6 @@
 #include "ServerDispatcher.h"
 
-RestInterfacePtr  ServerDispatcher::getRESTResource(ServerDataTypes::rest_operation operationType, string_t endpoint) {
+RestInterfacePtr  ServerDispatcher::getRESTResource(ServerDataTypes::rest_operation operationType, wstring endpoint) {
 	return m_resourceTable.getResource(endpoint);
 }
 

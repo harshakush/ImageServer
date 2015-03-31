@@ -21,8 +21,8 @@ template<typename T> RestInterface* createInstance() {
 	return new T();
 }
 
-typedef std::map<string_t, RestInterface*(*)()> ResourceTableType;
-typedef std::map<string_t, RestInterface*(*)()>::iterator ResourceTableTypeIter;
+typedef std::map<wstring, RestInterface*(*)()> ResourceTableType;
+typedef std::map<wstring, RestInterface*(*)()>::iterator ResourceTableTypeIter;
 
 class ResourceTable {
 
@@ -39,7 +39,7 @@ public:
 	}
 
 
-	RestInterfacePtr getResource(string_t endpoint) {
+	RestInterfacePtr getResource(wstring endpoint) {
 		// Laxy initialization of the resources.
 		// Till the first request reaches. 
 		// This also thread safe initialization.

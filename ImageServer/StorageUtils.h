@@ -16,7 +16,7 @@ class StorageUtils {
 public:
 	static void saveFile(ServerRequestPtr request);
 	static json::value getAllFiles(ServerRequestPtr request, bool &);
-	static string_t getQueryParameter(http_request request);
+	static wstring getQueryParameter(http_request request);
 	static ServerResponsePtr extractFile(ServerRequestPtr serverRequest);
 };
 

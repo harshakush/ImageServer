@@ -8,11 +8,11 @@ using namespace web;
 
 class FileNotFoundException :public RestServerException {
 public:
-	FileNotFoundException(string_t fileName) : m_fileName(fileName) {
+	FileNotFoundException(wstring fileName) : m_fileName(fileName) {
 	}
 
-	string_t what() {
-		string_t error_message = ServerMessages::FILE_NOT_FOUND + m_fileName;
+	wstring what() {
+		wstring error_message = ServerMessages::FILE_NOT_FOUND + m_fileName;
 		return error_message;
 	}
 
@@ -20,7 +20,7 @@ public:
 		return status_codes::NotFound;
 	}
 
-	string_t m_fileName;
+	wstring m_fileName;
 };
 
 #endif

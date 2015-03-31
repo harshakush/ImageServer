@@ -7,7 +7,7 @@
 
 using namespace std;
 
-static const utf16string RESOURCE_DEV = L"Resource not found";
+static const wstring RESOURCE_DEV = L"Resource not found";
 
 class ImageAccountsResource : public RestInterface {
 public:

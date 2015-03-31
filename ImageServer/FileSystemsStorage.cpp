@@ -41,7 +41,7 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
 
 	string str(name);
 	string fullPath = "C:\\Personal\\" + str + ext;
-	string_t fileToBeStored = utility::conversions::to_string_t(fullPath);
+	wstring fileToBeStored = utility::conversions::to_string_t(fullPath);
 	auto stream = concurrency::streams::fstream::open_ostream(
 		fileToBeStored,
 		std::ios_base::out | std::ios_base::binary).get();
@@ -52,7 +52,7 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
  ServerResponsePtr FileSystemsStorage::readFile(ServerRequestPtr serverRequest)  {
 
 	http_request request = serverRequest->getRequest();
-	string_t fileName_t = L"C:\\Personal\\";
+	wstring fileName_t = L"C:\\Personal\\";
 	fileName_t += serverRequest->getFileName();
 
 	if (!ServerUtils::hasFile(fileName_t)) {
