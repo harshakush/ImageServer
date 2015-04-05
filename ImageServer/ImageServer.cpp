@@ -12,7 +12,7 @@
 #include <string>
 #include <thread>
 #include "RESTServer.h"
-#include "BuildProperties.h"
+#include "ApplicationContext.h"
 #include <log4cplus/logger.h>
 #include <log4cplus/loggingmacros.h>
 #include <log4cplus/configurator.h>
@@ -35,10 +35,9 @@ VOID WINAPI ServiceCtrlHandler(DWORD);
 DWORD WINAPI ServiceWorkerThread();
 
 //Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("_tmain"));
-BuildProperties bp;
-wstring wstr = bp.getHost();
+
+wstring wstr = ApplicationContext::getInstance().getHost();
 RestServer server(wstr);
-//RestServer server (L"http://localhost:6060/rest");
 
 int _tmain(int argc, TCHAR *argv[])
 {

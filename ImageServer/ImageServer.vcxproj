@@ -105,8 +105,12 @@ copy "$(SolutionDir)Binaries\load.xml" "$(TargetDir)"
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImageServerLib\tinyxml2\include\tinyxml2.h" />
+    <ClInclude Include="DB.h" />
+    <ClInclude Include="DBInterface.h" />
+    <ClInclude Include="DBJson.h" />
+    <ClInclude Include="DBSql.h" />
     <ClInclude Include="ImageAccount.hpp" />
-    <ClInclude Include="BuildProperties.h" />
+    <ClInclude Include="ApplicationContext.h" />
     <ClInclude Include="FileNotFound.hpp" />
     <ClInclude Include="FileSystemsStorage.h" />
     <ClInclude Include="ImageAccountsResource.hpp" />

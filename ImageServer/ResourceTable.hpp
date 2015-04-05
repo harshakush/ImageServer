@@ -10,7 +10,7 @@
 #include "RestInterface.h"
 #include "ImagesResource.h"
 #include "ImageAccountsResource.hpp"
-#include "BuildProperties.h"
+#include "ApplicationContext.h"
 #include "DefaultResource.hpp"
 #include <thread>
 #include <mutex>
@@ -66,7 +66,6 @@ private:
 	}
 
 	std::once_flag load_flag;
-	BuildProperties m_properties;
 	ResourceTableType m_resourceTable;
 };
 

@@ -1,6 +1,7 @@
 
 #include "FileSystemsStorage.h"
 #include "FileNotFound.hpp"
+#include "ApplicationContext.h"
 //Todo :Harsha 
 //Clean this code
 //Need to read the folder info from some cofig file
@@ -8,7 +9,7 @@
 
 json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsDirectoryEmpty) {
 	ImageProcessor imgProcessor;
-	vector<wstring> imageList = imgProcessor.get_all_imagenames_from_dir(L"C:\\Personal");
+	vector<wstring> imageList = imgProcessor.get_all_imagenames_from_dir(ApplicationContext::getInstance().getRootStoragePath());
 	json::value json;
 
 	std::vector<web::json::value> fileList;
@@ -29,6 +30,7 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
 
 	//Move all the details to some util file.
 	web::http::http_headers::const_iterator fileName = request->getRequest().headers().find(L"FileName");
+	
 	char path[_MAX_PATH];
 	char drive[_MAX_DRIVE];
 	char dir[_MAX_DIR];
@@ -40,8 +42,8 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
 	_splitpath(c, drive, path, name, ext);
 
 	string str(name);
-	string fullPath = "C:\\Personal\\" + str + ext;
-	wstring fileToBeStored = utility::conversions::to_string_t(fullPath);
+	string fullPath = str + ext;
+	wstring fileToBeStored = ApplicationContext::getInstance().getRootStoragePath() + utility::conversions::to_string_t(fullPath);
 	auto stream = concurrency::streams::fstream::open_ostream(
 		fileToBeStored,
 		std::ios_base::out | std::ios_base::binary).get();
@@ -52,7 +54,7 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
  ServerResponsePtr FileSystemsStorage::readFile(ServerRequestPtr serverRequest)  {
 
 	http_request request = serverRequest->getRequest();
-	wstring fileName_t = L"C:\\Personal\\";
+	wstring fileName_t = ApplicationContext::getInstance().getRootStoragePath();
 	fileName_t += serverRequest->getFileName();
 
 	if (!ServerUtils::hasFile(fileName_t)) {

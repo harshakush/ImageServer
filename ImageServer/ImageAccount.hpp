@@ -5,6 +5,7 @@
 #include <iostream>
 #include <memory>
 using namespace std;
+using namespace web;
 
 class ImageAccount {
 
@@ -30,6 +31,7 @@ public :
 private: 
 	wstring m_accountNumber;
 	wstring m_accountName;
+	json::value m_json;
 };
 
 typedef shared_ptr<ImageAccount> ImageAccountPtr;

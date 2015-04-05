@@ -70,9 +70,6 @@
     <ClInclude Include="ResourceTable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BuildProperties.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ImageProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -95,6 +92,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageAccountsResource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DBInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DBJson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DBSql.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
