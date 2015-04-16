@@ -79,8 +79,12 @@ private:
 		m_relative_uri = m_requestMessage.relative_uri();
 		m_absolute_uri = m_requestMessage.absolute_uri();
 		m_request_uri = m_requestMessage.request_uri();
-
-		m_fileName = ServerUtils::getQueryParameter(m_requestMessage);
+		wstring query_param = ServerUtils::getQueryParameter(m_requestMessage);
+		if (!query_param.empty()) {
+			std::vector<unsigned char> base64_file_name = utility::conversions::from_base64(query_param);
+			std::string str(base64_file_name.begin(), base64_file_name.end());
+			m_fileName = ::conversions::to_string_t(str);			
+		}
 		m_relative_formatted_uri = ServerUtils::getRelativeUri(m_requestMessage);
 	}
 
