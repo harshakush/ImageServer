@@ -5,6 +5,7 @@
 #include <tchar.h>
 #include <fstream>
 #include <string>
+#include "CFile.hpp"
 using namespace std;
 
 
@@ -15,6 +16,6 @@ private:
 public:
 	ImageProcessor();
 	void generateThumbNails(wstring aPath);
-	vector<wstring>  get_all_imagenames_from_dir(wstring aPath);
+	vector<CFile>  getAllFiles(wstring aPath);
 	void generateFileListTxt(wstring aPath);
 };

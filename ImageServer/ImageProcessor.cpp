@@ -1,5 +1,6 @@
 #include "ImageProcessor.h"
 
+
 ImageProcessor::ImageProcessor(){}
 void ImageProcessor::generateThumbNails(wstring aPath)
 {
@@ -24,7 +25,7 @@ void ImageProcessor::generateThumbNails(wstring aPath)
 }
 void ImageProcessor::generateFileListTxt(wstring aPath)
 {
-	vector<wstring> lImageNames = get_all_imagenames_from_dir(aPath);
+	vector<wstring> lImageNames;// = getAllFiles(aPath);
 	wofstream  myfile;
 
 	myfile.open("C:\\Personal\\example123.txt");
@@ -34,22 +35,47 @@ void ImageProcessor::generateFileListTxt(wstring aPath)
 	myfile.close();
 
 }
-vector<wstring> ImageProcessor::get_all_imagenames_from_dir(wstring aPath)
+
+long getFileSize(WIN32_FIND_DATA findData)
 {
-	vector<wstring> names;
+	long fDataFSize = (long)findData.nFileSizeLow;
+	long fileSize = 0;
+
+	if (fDataFSize < 0 && (long)findData.nFileSizeHigh > 0) {
+		fileSize = fDataFSize + 4294967296 + ((long)findData.nFileSizeHigh * 4294967296);
+	}
+	else {
+		if ((long)findData.nFileSizeHigh > 0) {
+			fileSize = fDataFSize + ((long)findData.nFileSizeHigh * 4294967296);
+		} else if (fDataFSize < 0) {
+			fileSize = (fDataFSize + 4294967296);
+		} else {
+			fileSize = fDataFSize;
+		}
+	}
+	return fileSize;
+}
+
+vector<CFile> ImageProcessor::getAllFiles(wstring aPath)
+{
+	vector<CFile> names;
 	TCHAR search_path1[200];
 	swprintf(search_path1, 200, L"%s\\*.*", aPath.c_str());
 	WIN32_FIND_DATA fd;
+	long filesize;
 	HANDLE hFind = ::FindFirstFile(search_path1, &fd);
 	if (hFind != INVALID_HANDLE_VALUE) {
 		do {
 			// read all (real) files in current folder
 			// , delete '!' read other 2 default folder . and ..
 			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-				names.push_back(fd.cFileName);
+				//filesize = ::GetFileSize(hFind, NULL);
+				CFile object(fd.cFileName, getFileSize(fd));
+				names.push_back(object);
 			}
 		} while (::FindNextFile(hFind, &fd));
 		::FindClose(hFind);
 	}
+
 	return names;
 }

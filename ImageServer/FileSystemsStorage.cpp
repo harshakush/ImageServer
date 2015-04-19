@@ -9,14 +9,15 @@
 
 json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsDirectoryEmpty) {
 	ImageProcessor imgProcessor;
-	vector<wstring> imageList = imgProcessor.get_all_imagenames_from_dir(ApplicationContext::getInstance().getRootStoragePath());
+	vector<CFile> imageList = imgProcessor.getAllFiles(ApplicationContext::getInstance().getRootStoragePath());
 	json::value json;
 
 	std::vector<web::json::value> fileList;
 	for (int i = 0; i < imageList.size(); i++)
 	{
 		web::json::value file;
-		file[L"name"] = json::value::string(imageList[i]);
+		file[L"name"] = json::value::string(imageList[i].getFileName());
+		file[L"size"] = json::value::number(imageList[i].getFileSize());
 		fileList.push_back(file);
 	}
 	if (!imageList.size())
