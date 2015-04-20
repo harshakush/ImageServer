@@ -2,264 +2,278 @@
 <results version="2">
     <cppcheck version="1.68"/>
     <errors>
-        <error id="unreadVariable" severity="style" msg="Variable &apos;val_db_root&apos; is assigned a value that is never used." verbose="Variable &apos;val_db_root&apos; is assigned a value that is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="50"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="3"/>
         </error>
-        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;ServerUtils::getQueryParameter&apos; can be static." verbose="The member function &apos;ServerUtils::getQueryParameter&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="34"/>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;tinyxml2.h&quot; not found." verbose="Include file: &quot;tinyxml2.h&quot; not found.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="4"/>
         </error>
-        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;ApplicationContext::getInstance&apos; can be static." verbose="The member function &apos;ApplicationContext::getInstance&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="20"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="4"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ApplicationContext::getHostIp&apos; can be const." verbose="The member function &apos;ApplicationContext::getHostIp&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="25"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;Windows.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;Windows.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="6"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ApplicationContext::getHostEndPoint&apos; can be const." verbose="The member function &apos;ApplicationContext::getHostEndPoint&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="29"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;Pathcch.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;Pathcch.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="7"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ApplicationContext::getHost&apos; can be const." verbose="The member function &apos;ApplicationContext::getHost&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="60"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="8"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ApplicationContext::getRootStoragePath&apos; can be const." verbose="The member function &apos;ApplicationContext::getRootStoragePath&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="64"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/http_headers.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/http_headers.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="9"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ApplicationContext::getRootDBPath&apos; can be const." verbose="The member function &apos;ApplicationContext::getRootDBPath&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="68"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="10"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;CFile::getFileSize&apos; can be const." verbose="The member function &apos;CFile::getFileSize&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\CFile.hpp" line="19"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/rawptrstream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/rawptrstream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="11"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;DB::getDBhandle&apos; can be const." verbose="The member function &apos;DB::getDBhandle&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DB.h" line="22"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/filestream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/filestream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="12"/>
         </error>
-        <error id="unreadVariable" severity="style" msg="Variable &apos;name&apos; is assigned a value that is never used." verbose="Variable &apos;name&apos; is assigned a value that is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="38"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="13"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerRequest::getRequest&apos; can be const." verbose="The member function &apos;ServerRequest::getRequest&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="29"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/producerconsumerstream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/producerconsumerstream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="14"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerRequest::getJson&apos; can be const." verbose="The member function &apos;ServerRequest::getJson&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="47"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="16"/>
         </error>
-        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;ServerRequest::extractString&apos; can be static." verbose="The member function &apos;ServerRequest::extractString&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="51"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;direct.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;direct.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="17"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerRequest::getFileName&apos; can be const." verbose="The member function &apos;ServerRequest::getFileName&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="55"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sys/stat.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;sys/stat.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="18"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerRequest::getRelativeUri&apos; can be const." verbose="The member function &apos;ServerRequest::getRelativeUri&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="59"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cvt/wstring&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cvt/wstring&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="19"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerResponse::getResponseAsString&apos; can be const." verbose="The member function &apos;ServerResponse::getResponseAsString&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerResponse.h" line="27"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;codecvt&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;codecvt&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="20"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerResponse::getContenType&apos; can be const." verbose="The member function &apos;ServerResponse::getContenType&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerResponse.h" line="39"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\CFile.hpp" line="5"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerResponse::getResponse&apos; can be const." verbose="The member function &apos;ServerResponse::getResponse&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerResponse.h" line="47"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\CFile.hpp" line="6"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerResponse::getResponseType&apos; can be const." verbose="The member function &apos;ServerResponse::getResponseType&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerResponse.h" line="52"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DB.h" line="4"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerResponse::getBufferStream&apos; can be const." verbose="The member function &apos;ServerResponse::getBufferStream&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerResponse.h" line="61"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DBInterface.h" line="4"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerResponse::getStatusCode&apos; can be const." verbose="The member function &apos;ServerResponse::getStatusCode&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerResponse.h" line="69"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DBInterface.h" line="5"/>
         </error>
-        <error id="stlIfStrFind" severity="performance" msg="Inefficient usage of string::find() in condition; string::compare() would be faster." verbose="Either inefficient or wrong usage of string::find(). string::compare() will be faster if string::find&apos;s result is compared with 0, because it will not scan the whole string. If your intention is to check that there are no findings in the string, you should compare with std::string::npos.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="37"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DBJson.h" line="5"/>
         </error>
-        <error id="unusedVariable" severity="style" msg="Unused variable: dir" verbose="Unused variable: dir">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\FileSystemsStorage.cpp" line="37"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DBSql.h" line="5"/>
         </error>
-        <error id="unreadVariable" severity="style" msg="Variable &apos;textBoundary&apos; is assigned a value that is never used." verbose="Variable &apos;textBoundary&apos; is assigned a value that is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\FileSystemsStorage.cpp" line="76"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\RestInterface.h" line="10"/>
         </error>
-        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerDataTypes.h" line="10"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="3"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ImageAccount::getAccountNumber&apos; can be const." verbose="The member function &apos;ImageAccount::getAccountNumber&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageAccount.hpp" line="22"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;comdef.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;comdef.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="4"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ImageAccount::getAccountName&apos; can be const." verbose="The member function &apos;ImageAccount::getAccountName&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageAccount.hpp" line="26"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="6"/>
         </error>
-        <error id="unusedVariable" severity="style" msg="Unused variable: filesize" verbose="Unused variable: filesize">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.cpp" line="65"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/http_headers.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/http_headers.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="7"/>
         </error>
-        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;ImageProcessor::getAllFiles&apos; can be static." verbose="The member function &apos;ImageProcessor::getAllFiles&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.h" line="19"/>
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.cpp" line="59"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="8"/>
         </error>
-        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;ImageProcessor::generateFileListTxt&apos; can be static." verbose="The member function &apos;ImageProcessor::generateFileListTxt&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.h" line="20"/>
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.cpp" line="26"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/rawptrstream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/rawptrstream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="9"/>
         </error>
-        <error id="reademptycontainer" severity="style" msg="Reading from empty STL container" verbose="Reading from empty STL container" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.cpp" line="32"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/filestream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/filestream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="10"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xff). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xff). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="1"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="11"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xf0). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xf0). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="1"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/producerconsumerstream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/producerconsumerstream.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerRequest.h" line="12"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xff). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xff). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="2"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerDataTypes.h" line="3"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xe1). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xe1). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="3"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerDataTypes.h" line="4"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xff). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xff). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="3"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerResponse.h" line="5"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xc8). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xc8). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="3"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerResponse.h" line="6"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xe3). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xe3). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="4"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DefaultResource.hpp" line="5"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xff). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xff). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="4"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/details/basic_types.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/details/basic_types.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\RestServerException.h" line="4"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xc9). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xc9). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="4"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\RestServerException.h" line="5"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xca). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xca). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="4"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/details/basic_types.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/details/basic_types.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerMessages.hpp" line="2"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xc0). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xc0). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="4"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\StorageInterface.h" line="10"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xe1). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xe1). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="4"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.h" line="1"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xc8). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xc8). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="4"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.h" line="2"/>
         </error>
-        <error id="unhandledCharacters" severity="error" msg="The code contains unhandled characters (character code = 0xa8). Checking continues, but do not expect valid results." verbose="The code contains characters that are unhandled (character code = 0xa8). Neither unicode nor extended ASCII are supported. Checking continues, but do not expect valid results.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.aps" line="4"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.h" line="3"/>
         </error>
-        <error id="unreadVariable" severity="style" msg="Variable &apos;path&apos; is assigned a value that is never used." verbose="Variable &apos;path&apos; is assigned a value that is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImagesResource.h" line="19"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;Windows.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;Windows.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.h" line="4"/>
         </error>
-        <error id="unreadVariable" severity="style" msg="Variable &apos;Status&apos; is assigned a value that is never used." verbose="Variable &apos;Status&apos; is assigned a value that is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="60"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;tchar.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;tchar.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.h" line="5"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerParameter::getName&apos; can be const." verbose="The member function &apos;ServerParameter::getName&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="15"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;fstream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;fstream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.h" line="6"/>
         </error>
-        <error id="functionConst" severity="style" msg="Technically the member function &apos;ServerParameter::getValue&apos; can be const." verbose="The member function &apos;ServerParameter::getValue&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="23"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.h" line="7"/>
         </error>
-        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.vcxproj" line="74"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageAccount.hpp" line="5"/>
         </error>
-        <error id="constStatement" severity="warning" msg="Redundant code: Found a statement that begins with numeric constant." verbose="Redundant code: Found a statement that begins with numeric constant.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.vcxproj.filters" line="5"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageAccount.hpp" line="6"/>
         </error>
-        <error id="initializerList" severity="style" msg="Member variable &apos;RestServer::m_uri&apos; is in the wrong place in the initializer list." verbose="Member variable &apos;RestServer::m_uri&apos; is in the wrong place in the initializer list. Members are initialized in the order they are declared, not in the order they are in the initializer list.  Keeping the initializer list in the same order that the members were declared prevents order dependent initialization errors." inconclusive="true">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\RESTServer.h" line="29"/>
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\RESTServer.cpp" line="76"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;Windows.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;Windows.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="7"/>
         </error>
-        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ReadMe.txt" line="11"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;tchar.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;tchar.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="8"/>
         </error>
-        <error id="nullPointer" severity="error" msg="Possible null pointer dereference: expected" verbose="Possible null pointer dereference: expected">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="32"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="9"/>
         </error>
-        <error id="nullPointer" severity="error" msg="Possible null pointer dereference: found" verbose="Possible null pointer dereference: found">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="32"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="10"/>
         </error>
-        <error id="redundantAssignment" severity="performance" msg="Variable &apos;itemElement&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;itemElement&apos; is reassigned a value before the old one has been used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="253"/>
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="214"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;set&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;set&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="11"/>
         </error>
-        <error id="redundantAssignment" severity="performance" msg="Variable &apos;result&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;result&apos; is reassigned a value before the old one has been used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="435"/>
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="433"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="12"/>
         </error>
-        <error id="redundantAssignment" severity="performance" msg="Variable &apos;loadOkay&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;loadOkay&apos; is reassigned a value before the old one has been used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="945"/>
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="944"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;thread&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;thread&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="13"/>
         </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &apos;savedBuf&apos; can be reduced." verbose="The scope of the variable &apos;savedBuf&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="595"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/http_listener.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/http_listener.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\RESTServer.h" line="3"/>
         </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &apos;verifyBuf&apos; can be reduced." verbose="The scope of the variable &apos;verifyBuf&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="596"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\RESTServer.h" line="4"/>
         </error>
-        <error id="unreadVariable" severity="style" msg="Variable &apos;loadOkay&apos; is assigned a value that is never used." verbose="Variable &apos;loadOkay&apos; is assigned a value that is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="945"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/asyncrt_utils.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\RESTServer.h" line="5"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;addParemeter&apos; is never used." verbose="The function &apos;addParemeter&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="66"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/base_uri.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/base_uri.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\RESTServer.h" line="6"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;addRow&apos; is never used." verbose="The function &apos;addRow&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DBJson.h" line="14"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="4"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;del&apos; is never used." verbose="The function &apos;del&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DefaultResource.hpp" line="36"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="5"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;generateThumbNails&apos; is never used." verbose="The function &apos;generateThumbNails&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageProcessor.cpp" line="5"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;list&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;list&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="6"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;getAccountName&apos; is never used." verbose="The function &apos;getAccountName&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageAccount.hpp" line="26"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\StorageUtils.h" line="5"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;getAccountNumber&apos; is never used." verbose="The function &apos;getAccountNumber&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageAccount.hpp" line="22"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\StorageUtils.h" line="6"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;getDBhandle&apos; is never used." verbose="The function &apos;getDBhandle&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DB.h" line="22"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\StorageUtils.h" line="7"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;getHostEndPoint&apos; is never used." verbose="The function &apos;getHostEndPoint&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="29"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;thread&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;thread&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ResourceTable.hpp" line="15"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;getHostIp&apos; is never used." verbose="The function &apos;getHostIp&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="25"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;mutex&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;mutex&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ResourceTable.hpp" line="16"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;getName&apos; is never used." verbose="The function &apos;getName&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="15"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cpprest/http_msg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerDispatcher.h" line="12"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;getParameters&apos; is never used." verbose="The function &apos;getParameters&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="59"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerDispatcher.h" line="13"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;getRootDBPath&apos; is never used." verbose="The function &apos;getRootDBPath&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ApplicationContext.h" line="68"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;log4cplus/logger.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;log4cplus/logger.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="16"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;getValue&apos; is never used." verbose="The function &apos;getValue&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="23"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;log4cplus/loggingmacros.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;log4cplus/loggingmacros.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="17"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;put&apos; is never used." verbose="The function &apos;put&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DefaultResource.hpp" line="32"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;log4cplus/configurator.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;log4cplus/configurator.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="18"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;s2ws&apos; is never used." verbose="The function &apos;s2ws&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerUtils.h" line="80"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iomanip&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iomanip&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.cpp" line="19"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;setAccountName&apos; is never used." verbose="The function &apos;setAccountName&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageAccount.hpp" line="18"/>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;winres.h&quot; not found." verbose="Include file: &quot;winres.h&quot; not found.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageServer.rc" line="10"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;setAccountNumber&apos; is never used." verbose="The function &apos;setAccountNumber&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ImageAccount.hpp" line="14"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\StorageFactory.h" line="9"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;setName&apos; is never used." verbose="The function &apos;setName&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="19"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;SDKDDKVer.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;SDKDDKVer.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\targetver.h" line="8"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;setParameters&apos; is never used." verbose="The function &apos;setParameters&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="62"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\stdafx.h" line="10"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;setValue&apos; is never used." verbose="The function &apos;setValue&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\ServerParameters.h" line="27"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;tchar.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;tchar.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\stdafx.h" line="11"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;useDBJson&apos; is never used." verbose="The function &apos;useDBJson&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DB.h" line="16"/>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;tinyxml2.h&quot; not found." verbose="Include file: &quot;tinyxml2.h&quot; not found.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\tinyxml2.cpp" line="24"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &apos;useDBSql&apos; is never used." verbose="The function &apos;useDBSql&apos; is never used.">
-            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\DB.h" line="19"/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;new&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;new&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\tinyxml2.cpp" line="26"/>
         </error>
-        <error id="missingInclude" severity="information" msg="Cppcheck cannot find all the include files (use --check-config for details)" verbose="Cppcheck cannot find all the include files. Cppcheck can check the code without the include files found. But the results will probably be more accurate if all the include files are found. Please check your project&apos;s include directories and add all of them as include directories for Cppcheck. To see what files Cppcheck cannot find use --check-config."/>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stddef.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stddef.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\tinyxml2.cpp" line="28"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cstddef&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;cstddef&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\tinyxml2.cpp" line="30"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="7"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sstream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;sstream&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="8"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="11"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;crtdbg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;crtdbg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="15"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;tinyxml.h&quot; not found." verbose="Include file: &quot;tinyxml.h&quot; not found.">
+            <location file="C:\CodeIt\RestServerForCPP\ImageServer\ImageServer\xmltest.cpp" line="20"/>
+        </error>
     </errors>
 </results>
