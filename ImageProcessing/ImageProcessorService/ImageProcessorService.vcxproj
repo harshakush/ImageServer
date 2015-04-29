@@ -56,7 +56,13 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\ImageServerLib\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sqlite3.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)\ImageServerLib\tinyxml2\include\tinyxml2.h" .
+copy "$(SolutionDir)\ImageServerLib\sqlite3.h" .</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -79,9 +85,14 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ApplicationContext.h" />
+    <ClInclude Include="DBSql.h" />
     <ClInclude Include="ImageProcessor.h" />
+    <ClInclude Include="ServerUtils.h" />
+    <ClInclude Include="sqlite3.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImageProcessor.cpp" />

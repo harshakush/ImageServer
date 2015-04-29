@@ -2,10 +2,15 @@
 #include "FileSystemsStorage.h"
 #include "FileNotFound.hpp"
 #include "ApplicationContext.h"
+#include "MetaData.h"
+#include "DB.h"
+
 //Todo :Harsha 
 //Clean this code
 //Need to read the folder info from some cofig file
 //May be we will maintain a seperate one for this module
+
+DBInterfacePtr DB::dbInterface = NULL;
 
 json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsDirectoryEmpty) {
 	ImageProcessor imgProcessor;
@@ -44,12 +49,20 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
 
 	string str(name);
 	string fullPath = str + ext;
+	
+	//save metadata
+	MetaData metaData;
+	metaData.setFileName(fullPath);
+
 	wstring fileToBeStored = ApplicationContext::getInstance().getRootStoragePath() + utility::conversions::to_string_t(fullPath);
 	auto stream = concurrency::streams::fstream::open_ostream(
 		fileToBeStored,
 		std::ios_base::out | std::ios_base::binary).get();
 	request->getRequest().body().read_to_end(stream.streambuf()).wait();
 	stream.close().get();
+	//add metadata to table [ filename ]//
+	DB::getDbInterface()->saveMetaData(metaData);
+	//end
 }
 
  ServerResponsePtr FileSystemsStorage::readFile(ServerRequestPtr serverRequest)  {

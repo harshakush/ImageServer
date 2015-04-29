@@ -1,6 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 	<ImageServerConfig>
-		<hostip>http://192.168.1.36:6060/rest</hostip>
+		<hostip>http://192.168.43.210:6060/rest</hostip>
 		<FileSystemRoot>C:\Storage\DATA_DATA\</FileSystemRoot>
 		<DBRoot>C:\Storage\DB_DATA\</DBRoot>
+		<PreviewLocation>C:\Storage\Preview\</PreviewLocation>
 	</ImageServerConfig>

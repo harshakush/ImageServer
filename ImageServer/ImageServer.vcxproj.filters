@@ -109,6 +109,12 @@
     <ClInclude Include="ApplicationContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MetaData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -130,9 +136,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileSystemsStorage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

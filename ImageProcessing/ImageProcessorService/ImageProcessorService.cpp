@@ -190,7 +190,10 @@ DWORD WINAPI ServiceWorkerThread(LPVOID lpParam)
 	//cout << "hello testing. ";
 	//	server.start();
 
-	img.generateThumbNails(L"C:\\Personal");
+	//Sleep(10000);
+	img.generatePreviews();
+	//img.generateThumbNails(L"C:\\Personal");
+
 	//  Periodically check if the service has been requested to stop
 	while (WaitForSingleObject(g_ServiceStopEvent, 0) != WAIT_OBJECT_0)	{
 

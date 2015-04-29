@@ -11,19 +11,27 @@ using namespace std;
 class DB {
 public:
 	DB() {
-		dbInterfacePtr = DBJsonPtr(new DBJson());
+		//dbInterfacePtr = DBJsonPtr(new DBJson());
+
 	}
-	void useDBJson() {
-		dbInterfacePtr = DBJsonPtr(new DBJson());
+	/*void useDBJson() {
+	dbInterfacePtr = DBJsonPtr(new DBJson());
 	}
 	void useDBSql() {
-		dbInterfacePtr = DBSqlPtr(new DBSql());
- 	}
-	DBInterfacePtr getDBhandle() {
-		return dbInterfacePtr;
+	dbInterfacePtr = DBSqlPtr(new DBSql());
+	}*/
+
+	static DBInterfacePtr getDbInterface() {
+		if (dbInterface == NULL) {
+			//read the type of db from xml file & do new accordingly, as of now doing new of dbsql()
+			dbInterface = DBSqlPtr(new DBSql());
+		}
+		return dbInterface;
 	}
 private:
-	DBInterfacePtr dbInterfacePtr;
+	//DBInterfacePtr dbInterfacePtr;
+	static DBInterfacePtr dbInterface;
+
 };
 
 #endif

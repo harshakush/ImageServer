@@ -1,6 +1,38 @@
 #include "ImageProcessor.h"
+#include "ApplicationContext.h"
+#include "DBSql.h"
+#include "ServerUtils.h"
 
 ImageProcessor::ImageProcessor(){}
+
+vector<string> DBSql::fileNames;
+
+void ImageProcessor::generatePreviews() {
+	//read exe loc
+	//read img_src loc, preview loc from xml file
+	//read db fileName from xml file
+	//for each item in db
+	//generate preview
+	//table can include a field to represent whether preview
+	//is generated or not [ how to sync now ? ]
+	string storageLoc = ServerUtils::ws2s(ApplicationContext::getInstance().getRootStoragePath());
+	string previewLoc = ServerUtils::ws2s(ApplicationContext::getInstance().getPreviewPath());
+
+	//DBSql::getInstance(); //return vector of filenames to process //
+	vector<string> fileNames = DBSql::getInstance().getFileNames();
+
+	string srcLoc = "";
+	string destLoc = "";
+	for (string fileName : fileNames) {
+		srcLoc = storageLoc + fileName;
+		destLoc = previewLoc + fileName;
+		
+		string cmdToExecute = "gm convert -size 120x120 " + srcLoc + " -resize 120x120 +profile \"*\" " + destLoc;
+		const char *c_cmd = cmdToExecute.c_str();
+		system(c_cmd);
+	}
+}
+
 void ImageProcessor::generateThumbNails(wstring aPath)
 {
 	generateFileListTxt(aPath);

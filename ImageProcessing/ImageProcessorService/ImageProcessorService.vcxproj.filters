@@ -27,6 +27,21 @@
     <ClInclude Include="ImageProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DBSql.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

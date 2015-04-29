@@ -61,14 +61,15 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\ImageServerLib\log4cplus\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cplusD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\ImageServerLib\;$(SolutionDir)\ImageServerLib\log4cplus\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>log4cplusD.lib;sqlite3.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)\ImageServerLib\tinyxml2\include\tinyxml2.h" .</Command>
+      <Command>copy "$(SolutionDir)\ImageServerLib\tinyxml2\include\tinyxml2.h" .
+copy "$(SolutionDir)\ImageServerLib\sqlite3.h" .</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>copying file for building</Message>
@@ -76,6 +77,7 @@
     <PostBuildEvent>
       <Command>del tinyxml2.h
 copy "$(SolutionDir)Binaries\load.xml" "$(TargetDir)"
+copy "$(SolutionDir)Binaries\sqlite3.dll" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
     <PostBuildEvent>
@@ -115,6 +117,7 @@ copy "$(SolutionDir)Binaries\load.xml" "$(TargetDir)"
     <ClInclude Include="FileSystemsStorage.h" />
     <ClInclude Include="ImageAccountsResource.hpp" />
     <ClInclude Include="InvalidRequest.h" />
+    <ClInclude Include="MetaData.h" />
     <ClInclude Include="RestServerException.h" />
     <ClInclude Include="ServerMessages.hpp" />
     <ClInclude Include="ImageProcessor.h" />
@@ -128,6 +131,7 @@ copy "$(SolutionDir)Binaries\load.xml" "$(TargetDir)"
     <ClInclude Include="ServerRequest.h" />
     <ClInclude Include="ServerResponse.h" />
     <ClInclude Include="ServerUtils.h" />
+    <ClInclude Include="sqlite3.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StorageFactory.h" />
     <ClInclude Include="StorageInterface.h" />
@@ -142,7 +146,6 @@ copy "$(SolutionDir)Binaries\load.xml" "$(TargetDir)"
     <ClCompile Include="ServerDispatcher.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="StorageUtils.cpp" />
-    <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

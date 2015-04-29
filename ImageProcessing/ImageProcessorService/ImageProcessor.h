@@ -17,4 +17,5 @@ public:
 	void generateThumbNails(wstring aPath);
 	vector<wstring>  get_all_imagenames_from_dir(wstring aPath);
 	void generateFileListTxt(wstring aPath);
+	void generatePreviews();
 };
