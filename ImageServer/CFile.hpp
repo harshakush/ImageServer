@@ -9,8 +9,10 @@ using namespace std;
 class CFile {
 
 public: 
+	CFile() = default;
+
 	CFile(wstring fileN, long fileS) :m_fileSize(fileS),m_fileName(fileN){
-		}
+	}
 
 	wstring& getFileName() {
 		return m_fileName;
@@ -19,8 +21,18 @@ public:
 	long getFileSize() {
 		return m_fileSize;
 	}
-private:
 
+	CFile& fileName(wstring fileN) {
+		m_fileName = fileN;
+		return *this;
+	}
+
+	CFile& fileSize(long fileS) {
+		m_fileSize = fileS;
+		return *this;
+	}
+
+private:
 	long m_fileSize;
 	wstring m_fileName;
 

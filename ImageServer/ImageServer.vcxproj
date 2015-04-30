@@ -107,6 +107,7 @@ copy "$(SolutionDir)Binaries\sqlite3.dll" "$(TargetDir)"
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImageServerLib\tinyxml2\include\tinyxml2.h" />
+    <ClInclude Include="CFile.hpp" />
     <ClInclude Include="DB.h" />
     <ClInclude Include="DBInterface.h" />
     <ClInclude Include="DBJson.h" />

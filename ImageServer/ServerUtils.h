@@ -62,13 +62,12 @@ public:
 	static wstring getCurrentWorkingDirectory() {
 		HMODULE hModule = GetModuleHandleW(NULL);
 		WCHAR path[MAX_PATH];
-		GetModuleFileNameW(hModule, path, MAX_PATH);
-		//PathCchRemoveFileSpec(path, MAX_PATH);
-		wstring exePath(path);
 		wstring readPath;
 		wstring imageName = L"ImageServer.exe";
-		//exePath.replace("ImageServer.exe", "load.xml");
-		//replace_all(exePath.begin(), exePath.end(), "ImageServer.exe", "load.xml");
+
+		GetModuleFileNameW(hModule, path, MAX_PATH);
+		wstring exePath(path);		
+		
 		replace_all(imageName,exePath, readPath);
 		return exePath;
 	}
@@ -76,17 +75,16 @@ public:
 	static bool hasFile(wstring fileName) {
 			struct _stat buffer;
 			return (_wstat(fileName.c_str(), &buffer) == 0);
-		}
-	static wstring s2ws(const std::string& str)
-	{
+	}
+
+	static wstring s2ws(const std::string& str) {
 		typedef std::codecvt_utf8<wchar_t> convert_typeX;
 		std::wstring_convert<convert_typeX, wchar_t> converterX;
 
 		return converterX.from_bytes(str);
 	}
 
-	static string ws2s(const std::wstring& wstr)
-	{
+	static string ws2s(const std::wstring& wstr) {
 		typedef std::codecvt_utf8<wchar_t> convert_typeX;
 		std::wstring_convert<convert_typeX, wchar_t> converterX;
 

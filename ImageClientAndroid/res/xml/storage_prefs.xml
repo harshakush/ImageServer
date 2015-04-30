@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory android:title="@string/pref_cat_view" >
+       <EditTextPreference
+            android:defaultValue="/sdcard/"
+            android:key="backupdir"
+            android:summary="@string/go_online_dir"
+            android:title="@string/go_online_dir" />    
+	  <EditTextPreference
+            android:defaultValue="http://192.168.1.35:6060/rest/images"
+            android:key="backupUri"
+            android:summary="@string/go_online_url"
+            android:title="@string/go_online_url" />  			
+    </PreferenceCategory>    
+</PreferenceScreen>

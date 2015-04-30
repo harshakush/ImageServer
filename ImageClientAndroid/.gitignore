@@ -1,6 +1,7 @@
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
+gen
+gen/**
+.idea/**
+.idea
 .DS_Store
-/build
+android-file-explorer.iml
+out

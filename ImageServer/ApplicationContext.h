@@ -15,8 +15,20 @@ private:
 		init();
 	}
 
+	ApplicationContext(const ApplicationContext&rhs) {
+		//no copy.
+	}
+	void operator=(ApplicationContext &rhs) {
+		//no assignment, just private
+	}
+
+
 public:
 	
+	~ApplicationContext() {
+		//any clean up needed.
+	}
+
 	static ApplicationContext getInstance() {
 		static ApplicationContext instance;
 		return instance;
