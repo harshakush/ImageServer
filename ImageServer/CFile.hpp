@@ -14,11 +14,11 @@ public:
 	CFile(wstring fileN, long fileS) :m_fileSize(fileS),m_fileName(fileN){
 	}
 
-	wstring& getFileName() {
+	const wstring getFileName() const {
 		return m_fileName;
 	}
 
-	long getFileSize() {
+	long getFileSize() const {
 		return m_fileSize;
 	}
 

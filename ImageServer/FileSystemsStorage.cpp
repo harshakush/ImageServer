@@ -5,12 +5,6 @@
 #include "MetaData.h"
 #include "DB.h"
 
-//Todo :Harsha 
-//Clean this code
-//Need to read the folder info from some cofig file
-//May be we will maintain a seperate one for this module
-
-DBInterfacePtr DB::dbInterface = NULL;
 
 json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsDirectoryEmpty) {
 	ImageProcessor imgProcessor;
@@ -32,11 +26,11 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
 	json[L"fileList"] = json::value::array(fileList);
 	return json;
 }
+
  void FileSystemsStorage::writeFile(ServerRequestPtr request)  {
 
 	//Move all the details to some util file.
-	web::http::http_headers::const_iterator fileName = request->getRequest().headers().find(L"FileName");
-	
+	web::http::http_headers::const_iterator fileName = request->getRequest().headers().find(L"FileName");	
 	char path[_MAX_PATH];
 	char drive[_MAX_DRIVE];
 	char dir[_MAX_DIR];
@@ -44,25 +38,22 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
 	char ext[_MAX_EXT];
 	_bstr_t b(fileName->second.c_str());
 	const char* c = b;
-
 	_splitpath(c, drive, path, name, ext);
-
 	string str(name);
-	string fullPath = str + ext;
+	string fullPath(str + ext);
+	CFile metaData;
 	
-	//save metadata
-	MetaData metaData;
-	metaData.setFileName(fullPath);
-
+	metaData.fileName(utility::conversions::to_string_t(fullPath));
 	wstring fileToBeStored = ApplicationContext::getInstance().getRootStoragePath() + utility::conversions::to_string_t(fullPath);
 	auto stream = concurrency::streams::fstream::open_ostream(
 		fileToBeStored,
 		std::ios_base::out | std::ios_base::binary).get();
 	request->getRequest().body().read_to_end(stream.streambuf()).wait();
 	stream.close().get();
-	//add metadata to table [ filename ]//
-	DB::getDbInterface()->saveMetaData(metaData);
-	//end
+	
+	DBInterfacePtr dbinstance = DB::getDbInterface();
+	dbinstance->saveMetaData(metaData);
+	
 }
 
  ServerResponsePtr FileSystemsStorage::readFile(ServerRequestPtr serverRequest)  {

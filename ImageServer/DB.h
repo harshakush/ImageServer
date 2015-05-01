@@ -5,32 +5,29 @@
 #include "DBInterface.h"
 #include "DBJson.h"
 #include "DBSql.h"
+#include <thread>
+#include <mutex>
 
 using namespace std;
+using namespace utility;
 
 class DB {
-public:
-	DB() {
-		//dbInterfacePtr = DBJsonPtr(new DBJson());
 
-	}
-	/*void useDBJson() {
-	dbInterfacePtr = DBJsonPtr(new DBJson());
-	}
-	void useDBSql() {
-	dbInterfacePtr = DBSqlPtr(new DBSql());
-	}*/
-
-	static DBInterfacePtr getDbInterface() {
-		if (dbInterface == NULL) {
-			//read the type of db from xml file & do new accordingly, as of now doing new of dbsql()
-			dbInterface = DBSqlPtr(new DBSql());
-		}
-		return dbInterface;
-	}
 private:
-	//DBInterfacePtr dbInterfacePtr;
-	static DBInterfacePtr dbInterface;
+	//if there is no defination use default
+	DB()  = default;
+
+	void static init();
+	
+public:	
+	virtual ~DB();
+
+	//call_once is thread safe C++11.
+	static DBInterfacePtr getDbInterface();
+
+private:	
+	static DBInterfacePtr DB::m_dbInterface;
+	static std::once_flag DB::load_flag;
 
 };
 

@@ -3,12 +3,11 @@
 
 #include "DBInterface.h"
 #include "ServerUtils.h"
-
 #include <memory>
+
 using namespace std;
 
-//For now implement just one function and make it work.
-// Add row. Take it in incremental way.
+
 class DBSql : public DBInterface {
 
 public:
@@ -16,13 +15,14 @@ public:
 		connect();
 		createFileNamesTable();
 	}
-	~DBSql() {
+	//always make destructor virtual
+	virtual ~DBSql() {
 		sqlite3_close(db);
 	}
 
-	void saveMetaData(const MetaData &metaData) {
+	void saveMetaData(const CFile& fileData) {
 		int rc; char *error;
-		string fileName = metaData.getFileName();
+		wstring fileName = fileData.getFileName();
 		char *sqlInsert = new char[fileName.length() + 50];
 		sprintf(sqlInsert, "INSERT INTO MyTable VALUES(NULL, '%s');", fileName.c_str());
 
