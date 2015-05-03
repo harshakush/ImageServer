@@ -108,6 +108,7 @@ copy "$(SolutionDir)Binaries\sqlite3.dll" "$(TargetDir)"
   <ItemGroup>
     <ClInclude Include="..\ImageServerLib\tinyxml2\include\tinyxml2.h" />
     <ClInclude Include="CFile.hpp" />
+    <ClInclude Include="ContextFactory.h" />
     <ClInclude Include="DB.h" />
     <ClInclude Include="DBInterface.h" />
     <ClInclude Include="DBJson.h" />
@@ -138,8 +139,10 @@ copy "$(SolutionDir)Binaries\sqlite3.dll" "$(TargetDir)"
     <ClInclude Include="StorageInterface.h" />
     <ClInclude Include="StorageUtils.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UnableToReadConfig.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DB.cpp" />
     <ClCompile Include="FileSystemsStorage.cpp" />
     <ClCompile Include="ImageProcessor.cpp" />
     <ClCompile Include="ImageServer.cpp" />

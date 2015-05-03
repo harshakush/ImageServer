@@ -1,3 +1,5 @@
+#ifndef HEADER_IMAGE_PROCESSOR
+#define HEADER_IMAGE_PROCESSOR
 #include <iostream>
 #include <vector>
 #include <stdio.h>
@@ -6,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include "CFile.hpp"
+
 using namespace std;
 
 
@@ -19,3 +22,5 @@ public:
 	vector<CFile>  getAllFiles(wstring aPath);
 	void generateFileListTxt(wstring aPath);
 };
+
+#endif

@@ -17,13 +17,16 @@
 using namespace std;
 using namespace utility;
 
-template<typename T> RestInterface* createInstance() {
-	return new T();
+namespace ResourceTypes {
+	template<typename T> RestInterface* createInstance() {
+		return new T();
+	}
+
+	typedef std::map<wstring, RestInterface*(*)()> ResourceTableType;
+	typedef std::map<wstring, RestInterface*(*)()>::iterator ResourceTableTypeIter;
 }
 
-typedef std::map<wstring, RestInterface*(*)()> ResourceTableType;
-typedef std::map<wstring, RestInterface*(*)()>::iterator ResourceTableTypeIter;
-
+using namespace ResourceTypes;
 class ResourceTable {
 
 public:
@@ -57,6 +60,13 @@ public:
 		return RestInterfacePtr(restResource);
 	}
 
+	void addResource(wstring relativeUrl, void*) {
+		//m_resourceTable.insert(make_pair(L"/images", ));
+	}
+
+	//ResourceTableType& getResourceTable() {
+	//	return m_resourceTable;
+	//}
 
 private:
 

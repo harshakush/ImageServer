@@ -3,9 +3,13 @@
 #include <iostream>
 #include "tinyxml2.h"
 #include "ServerUtils.h"
+#include "UnableToReadConfig.h"
+#include "ResourceTable.hpp"
+
 
 using namespace std;
 using namespace tinyxml2;
+//using namespace RessourceTypes;
 
 class ApplicationContext
 {
@@ -65,7 +69,8 @@ public:
 
 		}
 		catch (exception &e) {
-			//eat it here.
+			UnableToReadConfigException configException;
+			throw configException;
 		}
 	}
 
@@ -81,12 +86,17 @@ public:
 		return m_rootDBPath;
 	}
 
+	/*ResourceTable getResourceTable() {
+		return m_resourceTable;
+	}
+	*/
 private:
 	wstring m_hostip;
 	wstring m_hostEndpoint;
 	wstring m_rootStoragePath;
 	wstring m_rootDBPath;
 	wstring m_port;
+	//ResourceTable m_resourceTable;
 	
 };
 

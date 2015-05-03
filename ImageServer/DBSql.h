@@ -4,6 +4,8 @@
 #include "DBInterface.h"
 #include "ServerUtils.h"
 #include <memory>
+#include <thread>
+#include <mutex>
 
 using namespace std;
 
@@ -21,6 +23,8 @@ public:
 	}
 
 	void saveMetaData(const CFile& fileData) {
+
+		std::lock_guard<std::mutex> lock(m_dbMutex);
 		int rc; char *error;
 		wstring fileName = fileData.getFileName();
 		char *sqlInsert = new char[fileName.length() + 50];
@@ -47,8 +51,10 @@ public:
 
 private:
 	sqlite3 *db;
+	std::mutex m_dbMutex;
 
 	void connect() {
+		std::lock_guard<std::mutex> lock(m_dbMutex);
 		int rc;
 		// read the db file name from xml file config ??
 		string exePath = ServerUtils::ws2s(ServerUtils::getCurrentWorkingDirectory());
@@ -66,6 +72,7 @@ private:
 
 
 	void createFileNamesTable() {
+		std::lock_guard<std::mutex> lock(m_dbMutex);
 		int rc;
 		char * error;
 		const char *sqlCreateTable = "CREATE TABLE MyTable (id INTEGER PRIMARY KEY, value STRING);";
