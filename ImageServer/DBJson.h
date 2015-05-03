@@ -14,12 +14,7 @@ public:
 	virtual void addRow() {
 
 	}
-	/*		virtual void updateRow() = 0;
-	virtual void deleteRow() = 0;
-	virtual void getAllRows() = 0;
-	virtual void deleteAllRows() = 0;
-	virtual void lock() = 0;
-	virtual void unlock() = 0;*/
+	
 private:
 
 };

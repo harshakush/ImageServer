@@ -107,6 +107,9 @@ copy "$(SolutionDir)Binaries\sqlite3.dll" "$(TargetDir)"
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImageServerLib\tinyxml2\include\tinyxml2.h" />
+    <ClInclude Include="AccountAlreadyExists.h" />
+    <ClInclude Include="AccountCreationFailed.h" />
+    <ClInclude Include="AccountNotFound.h" />
     <ClInclude Include="CFile.hpp" />
     <ClInclude Include="ContextFactory.h" />
     <ClInclude Include="DB.h" />
@@ -143,6 +146,7 @@ copy "$(SolutionDir)Binaries\sqlite3.dll" "$(TargetDir)"
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DB.cpp" />
+    <ClCompile Include="DBSql.cpp" />
     <ClCompile Include="FileSystemsStorage.cpp" />
     <ClCompile Include="ImageProcessor.cpp" />
     <ClCompile Include="ImageServer.cpp" />

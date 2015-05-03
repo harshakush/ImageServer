@@ -12,7 +12,7 @@ using namespace std;
 class DBInterface {
 
 public:
-	virtual ~DBInterface() {}
+	virtual ~DBInterface() = default;
 	virtual void addRow() = 0;
 	virtual void saveMetaData(const CFile &metaData) = 0;
 	virtual void connect() = 0;

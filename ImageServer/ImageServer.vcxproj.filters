@@ -124,6 +124,15 @@
     <ClInclude Include="ContextFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AccountAlreadyExists.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountCreationFailed.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountNotFound.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -148,6 +157,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DBSql.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
