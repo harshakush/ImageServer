@@ -33,7 +33,7 @@ public:
 		//any clean up needed.
 	}
 
-	static ApplicationContext getInstance() {
+	static ApplicationContext & getInstance() {
 		static ApplicationContext instance;
 		return instance;
 	}
