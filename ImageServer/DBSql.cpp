@@ -1,4 +1,7 @@
 #include "DBSql.h"
+#include "ServerMessages.hpp"
+#include "DbQueries.hpp"
+#include "ServerUtils.h"
 
 DBSql::DBSql() {
 	connect();
@@ -14,11 +17,10 @@ void DBSql::saveMetaData(const CFile& fileData) {
 
 	std::lock_guard<std::mutex> lock(m_dbMutex);
 	int rc; char *error;
-	wstring fileName = fileData.getFileName();
+	string fileName = ServerUtils::ws2s(fileData.getFileName());
 	char *sqlInsert = new char[fileName.length() + 50];
-	sprintf(sqlInsert, "INSERT INTO MyTable VALUES(NULL, '%s');", fileName.c_str());
+	sprintf(sqlInsert, "INSERT INTO SqlLiteTable VALUES(NULL, '%s',?,?,?,?);", fileName.c_str());
 
-	//const char *sqlInsert = "INSERT INTO MyTable VALUES(NULL, 'A Value');";
 	rc = sqlite3_exec(db, sqlInsert, NULL, NULL, &error);
 	if (rc)
 	{
@@ -60,7 +62,10 @@ void DBSql::createFileNamesTable() {
 		std::lock_guard<std::mutex> lock(m_dbMutex);
 		int rc;
 		char * error;
-		const char *sqlCreateTable = "CREATE TABLE MyTable (id INTEGER PRIMARY KEY, value STRING);";
+	
+		string tableCreateQuery = ServerUtils::ws2s(SqlLiteMessages::CREATE_SQLLITE_TABLE);
+		const char * sqlCreateTable = tableCreateQuery.c_str();
+
 		rc = sqlite3_exec(db, sqlCreateTable, NULL, NULL, &error);
 		if (rc)
 		{
@@ -69,6 +74,6 @@ void DBSql::createFileNamesTable() {
 		}
 		else
 		{
-			cout << "Created MyTable." << endl << endl;
+			cout << "Created SqlLite table." << endl << endl;
 		}
 	}

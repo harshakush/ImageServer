@@ -137,6 +137,7 @@ copy "$(SolutionDir)Binaries\sqlite3.dll" "$(TargetDir)"
     <ClInclude Include="ServerResponse.h" />
     <ClInclude Include="ServerUtils.h" />
     <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="DbQueries.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StorageFactory.h" />
     <ClInclude Include="StorageInterface.h" />
