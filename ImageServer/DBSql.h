@@ -19,6 +19,7 @@ public:
 	virtual ~DBSql();
 
 	void saveMetaData(const CFile& fileData);
+	void getAllFileMetaData(vector<CFile> &);
 
 	void addRow();
 

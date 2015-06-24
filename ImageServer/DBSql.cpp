@@ -13,13 +13,59 @@ DBSql::~DBSql() {
 	sqlite3_close(db);
 }
 
+void DBSql::getAllFileMetaData(vector<CFile> & result) {
+	
+	sqlite3_stmt *statement;
+
+	char *query = "SELECT FileName from SqlLiteTable";
+
+	if (sqlite3_prepare(db, query, -1, &statement, 0) == SQLITE_OK)
+	{
+		int ctotal = sqlite3_column_count(statement);
+		int res = 0;
+
+		while (1)
+		{
+			res = sqlite3_step(statement);
+
+			if (res == SQLITE_ROW)
+			{
+				for (int i = 0; i < ctotal; i++)
+				{
+					string s = (char*)sqlite3_column_text(statement, i);
+					wstring fileName = ServerUtils::s2ws(s);
+					CFile object(fileName,123456);
+
+					result.push_back(object);
+			
+					//cout << s << " ";
+				}
+				//cout << endl;
+			}
+
+			if (res == SQLITE_DONE || res == SQLITE_ERROR)
+			{
+				//cout << "done " << endl;
+				break;
+			}
+		}
+	}
+	
+}
+
 void DBSql::saveMetaData(const CFile& fileData) {
 
 	std::lock_guard<std::mutex> lock(m_dbMutex);
 	int rc; char *error;
+	
 	string fileName = ServerUtils::ws2s(fileData.getFileName());
 	char *sqlInsert = new char[fileName.length() + 50];
-	sprintf(sqlInsert, "INSERT INTO SqlLiteTable VALUES(NULL, '%s',?,?,?,?);", fileName.c_str());
+
+	string insertQueryStr = ServerUtils::ws2s(SqlLiteQueries::INSERT_METADATA);
+	const char * insertQuery = insertQueryStr.c_str();
+	sprintf(sqlInsert, insertQuery, fileName.c_str(), "?", "?", "?", "?");
+
+	//sprintf(sqlInsert, "INSERT INTO SqlLiteTable VALUES(NULL, '%s',?,?,?,?);", fileName.c_str());
 
 	rc = sqlite3_exec(db, sqlInsert, NULL, NULL, &error);
 	if (rc)
@@ -63,7 +109,7 @@ void DBSql::createFileNamesTable() {
 		int rc;
 		char * error;
 	
-		string tableCreateQuery = ServerUtils::ws2s(SqlLiteMessages::CREATE_SQLLITE_TABLE);
+		string tableCreateQuery = ServerUtils::ws2s(SqlLiteQueries::CREATE_SQLLITE_TABLE);
 		const char * sqlCreateTable = tableCreateQuery.c_str();
 
 		rc = sqlite3_exec(db, sqlCreateTable, NULL, NULL, &error);

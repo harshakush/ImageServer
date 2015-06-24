@@ -5,6 +5,7 @@
 #include <iostream>
 #include <memory>
 #include "CFile.hpp"
+#include <vector>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ public:
 	virtual ~DBInterface() = default;
 	virtual void addRow() = 0;
 	virtual void saveMetaData(const CFile &metaData) = 0;
+	virtual void getAllFileMetaData(vector<CFile> &) = 0;
 	virtual void connect() = 0;
 
 };

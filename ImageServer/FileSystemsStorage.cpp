@@ -8,7 +8,12 @@
 
 json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsDirectoryEmpty) {
 	ImageProcessor imgProcessor;
-	vector<CFile> imageList = imgProcessor.getAllFiles(ApplicationContext::getInstance().getRootStoragePath());
+	//vector<CFile> imageList = imgProcessor.getAllFiles(ApplicationContext::getInstance().getRootStoragePath());
+	//reading filedetails from sqllite
+	DBInterfacePtr dbinstance = DB::getDbInterface();
+	vector<CFile> imageList;
+	dbinstance->getAllFileMetaData(imageList);
+	
 	json::value json;
 
 	std::vector<web::json::value> fileList;
