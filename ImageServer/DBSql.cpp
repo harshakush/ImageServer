@@ -17,7 +17,7 @@ void DBSql::getAllFileMetaData(vector<CFile> & result) {
 	
 	sqlite3_stmt *statement;
 
-	char *query = "SELECT FileName from SqlLiteTable";
+	char *query = "SELECT FileName,FileSize from SqlLiteTable";
 
 	if (sqlite3_prepare(db, query, -1, &statement, 0) == SQLITE_OK)
 	{
@@ -30,17 +30,18 @@ void DBSql::getAllFileMetaData(vector<CFile> & result) {
 
 			if (res == SQLITE_ROW)
 			{
-				for (int i = 0; i < ctotal; i++)
-				{
-					string s = (char*)sqlite3_column_text(statement, i);
-					wstring fileName = ServerUtils::s2ws(s);
-					CFile object(fileName,123456);
-
-					result.push_back(object);
+				int fileNameColumnPos = 0;
+				int fileSizeColumnPos = 1;
+				//read fileName 
+				string sfName = (char*)sqlite3_column_text(statement, fileNameColumnPos);
+				wstring fileName = ServerUtils::s2ws(sfName);
+				//read fileSize & convert to long
+				string sfSize = (char*)sqlite3_column_text(statement, fileSizeColumnPos);
+				long fileSize = stol(sfSize);
+				//create CFile object with fileName & fileSize
+				CFile object(fileName,fileSize);
+				result.push_back(object);
 			
-					//cout << s << " ";
-				}
-				//cout << endl;
 			}
 
 			if (res == SQLITE_DONE || res == SQLITE_ERROR)
@@ -63,9 +64,7 @@ void DBSql::saveMetaData(const CFile& fileData) {
 
 	string insertQueryStr = ServerUtils::ws2s(SqlLiteQueries::INSERT_METADATA);
 	const char * insertQuery = insertQueryStr.c_str();
-	sprintf(sqlInsert, insertQuery, fileName.c_str(), "?", "?", "?", "?");
-
-	//sprintf(sqlInsert, "INSERT INTO SqlLiteTable VALUES(NULL, '%s',?,?,?,?);", fileName.c_str());
+	sprintf(sqlInsert, insertQuery, fileName.c_str(), fileData.getFileSize(), "?", "?", "?");
 
 	rc = sqlite3_exec(db, sqlInsert, NULL, NULL, &error);
 	if (rc)

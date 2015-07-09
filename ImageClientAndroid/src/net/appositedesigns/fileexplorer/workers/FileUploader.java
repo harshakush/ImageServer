@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 import net.appositedesigns.fileexplorer.activity.FileListActivity;
+import net.appositedesigns.fileexplorer.model.FileListEntry;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -22,7 +24,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.sql.Connection;
 
-public class FileUploader extends AsyncTask<String,String,String>
+public class FileUploader extends AsyncTask<FileListEntry,String,String>
 {
 
     private static final String TAG = FileUploader.class.getName();
@@ -49,7 +51,8 @@ public class FileUploader extends AsyncTask<String,String,String>
     }
 
     @Override
-    protected String doInBackground(String... sUrl) {
+    // protected String doInBackground(String... sUrl) {
+    protected String doInBackground(FileListEntry... sUrl) {
 
         Thread waitForASec = new Thread() {
 
@@ -93,7 +96,7 @@ public class FileUploader extends AsyncTask<String,String,String>
             @Override
             public void run() {
 
-             try {
+                try {
                     Thread.sleep(100);
                     if(this.isInterrupted())
                     {
@@ -121,7 +124,8 @@ public class FileUploader extends AsyncTask<String,String,String>
 
 
         caller.runOnUiThread(waitForASec);
-        String upLoadServerUri = sUrl[0];
+
+        String upLoadServerUri = caller.getBackupUrl();
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         String lineEnd = "";
@@ -129,8 +133,8 @@ public class FileUploader extends AsyncTask<String,String,String>
         int bytesRead, bytesAvailable, bufferSize;
         byte[] buffer;
         int maxBufferSize = 1 * 1024 * 1024;
-        File sourceFile = new File(sUrl[1]);
 
+        File sourceFile = new File(sUrl[0].getPath().getPath());
         try {
 
             // open a URL connection to the Servlet
@@ -147,6 +151,9 @@ public class FileUploader extends AsyncTask<String,String,String>
             conn.setRequestProperty("Connection", "Keep-Alive");
             conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=");
             conn.setRequestProperty("FileName",sourceFile.getName());
+
+            conn.setRequestProperty("FileSize", String.valueOf(sUrl[0].getSize()));
+
 
             dos = new DataOutputStream(conn.getOutputStream());
 

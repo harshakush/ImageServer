@@ -396,7 +396,7 @@ public class FileActionsHelper {
 			break;
 
         case R.id.upload:
-            new FileUploader(mContext).execute(mContext.getBackupUrl(),file.getPath());
+			new FileUploader(mContext).execute(entry);
             break;
 		default:
 			break;

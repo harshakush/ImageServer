@@ -11,5 +11,5 @@ namespace SqlLiteQueries {
 	//fileName, filesize, dateaccessed, dateUploaded, fileformat (jpg,png etc )//
 	const static wstring CREATE_SQLLITE_TABLE = L"CREATE TABLE SqlLiteTable( Id INTEGER PRIMARY KEY NOT NULL, FileName TEXT,FileSize INTEGER, DateAccessed INTEGER, DateUploaded INTEGER, FileType TEXT); ";
 	
-	const static wstring INSERT_METADATA = L"INSERT INTO SqlLiteTable VALUES(NULL,'%s','%s','%s','%s','%s');";
+	const static wstring INSERT_METADATA = L"INSERT INTO SqlLiteTable VALUES(NULL,'%s','%lu','%s','%s','%s');";
 }

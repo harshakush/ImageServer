@@ -47,8 +47,13 @@ json::value FileSystemsStorage::getAllFiles(ServerRequestPtr request, bool &bIsD
 	string str(name);
 	string fullPath(str + ext);
 	CFile metaData;
+	//try to read the size from the header
+	web::http::http_headers::const_iterator fileSize = request->getRequest().headers().find(L"FileSize");
+	long fsize = stol(fileSize->second.c_str());
 	
+
 	metaData.fileName(utility::conversions::to_string_t(fullPath));
+	metaData.fileSize(fsize);
 	wstring fileToBeStored = ApplicationContext::getInstance().getRootStoragePath() + utility::conversions::to_string_t(fullPath);
 	auto stream = concurrency::streams::fstream::open_ostream(
 		fileToBeStored,
